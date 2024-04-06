@@ -1,0 +1,18 @@
+{
+    "name": "Hasbro.TheGameOfLife.TrafficJam",
+    "rootNamespace": "Hasbro.TheGameOfLife.TrafficJam",
+    "references": [
+        "GUID:b5b1c6cd668cdd84da811de4753707b2",
+        "GUID:4365bf90deedd1d49a893629c07b4546",
+        "GUID:f5f549b59834f4541899401b58d40ee2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

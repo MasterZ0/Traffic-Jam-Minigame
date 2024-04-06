@@ -1,0 +1,17 @@
+{
+    "name": "Hasbro.TheGameOfLife.ApplicationManager",
+    "rootNamespace": "Hasbro.TheGameOfLife.ApplicationManager",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:f5f549b59834f4541899401b58d40ee2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

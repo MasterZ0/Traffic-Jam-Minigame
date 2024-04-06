@@ -1,0 +1,16 @@
+{
+    "name": "Hasbro.TheGameOfLife.Gameplay",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f5f549b59834f4541899401b58d40ee2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

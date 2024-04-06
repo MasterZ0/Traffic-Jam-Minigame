@@ -1,0 +1,19 @@
+{
+    "name": "Hasbro.TheGameOfLife.GameSelection",
+    "rootNamespace": "Hasbro.TheGameOfLife.GameSelection",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:d25e4ea37e726b248af9a75ee46dbeda",
+        "GUID:4365bf90deedd1d49a893629c07b4546",
+        "GUID:f5f549b59834f4541899401b58d40ee2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
