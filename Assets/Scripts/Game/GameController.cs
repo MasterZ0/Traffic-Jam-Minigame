@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.Gameplay
+namespace Marmalade.TheGameOfLife.Gameplay
 {
     /// <summary>
     /// Core data, used to manage the gameplay

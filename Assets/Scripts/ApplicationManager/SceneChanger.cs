@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.ApplicationManager
+namespace Marmalade.TheGameOfLife.ApplicationManager
 {
     /// <summary>
     /// Useful to receive Unity events

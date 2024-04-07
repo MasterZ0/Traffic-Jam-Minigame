@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Shared
+namespace Marmalade.TheGameOfLife.Shared
 {
     public static class GameOfLifeExtensions
     {

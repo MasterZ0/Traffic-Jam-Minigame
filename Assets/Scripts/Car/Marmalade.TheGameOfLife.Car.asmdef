@@ -1,6 +1,6 @@
 {
-    "name": "Hasbro.TheGameOfLife.Car",
-    "rootNamespace": "Hasbro.TheGameOfLife.Car",
+    "name": "Marmalade.TheGameOfLife.Car",
+    "rootNamespace": "Marmalade.TheGameOfLife.Car",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:4365bf90deedd1d49a893629c07b4546",

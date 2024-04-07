@@ -1,6 +1,6 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.Gameplay
+namespace Marmalade.TheGameOfLife.Gameplay
 {
     /// <summary>
     /// Represents a player in the game.

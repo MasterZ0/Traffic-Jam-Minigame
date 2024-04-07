@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hasbro.UIElements
+namespace Marmalade.UIElements
 {
     public abstract class Navigator : Selectable
     {

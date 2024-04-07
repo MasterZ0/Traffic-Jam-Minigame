@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Hasbro.TheGameOfLife.Shared
+namespace Marmalade.TheGameOfLife.Shared
 {
     public static class ServiceLocator
     {

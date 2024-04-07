@@ -1,4 +1,4 @@
-﻿namespace Hasbro.TheGameOfLife.Shared
+﻿namespace Marmalade.TheGameOfLife.Shared
 {   
     public enum CharacterColor
     {

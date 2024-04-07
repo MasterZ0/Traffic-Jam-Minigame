@@ -1,12 +1,12 @@
-using Hasbro.TheGameOfLife.Car;
-using Hasbro.TheGameOfLife.Gameplay;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Car;
+using Marmalade.TheGameOfLife.Gameplay;
+using Marmalade.TheGameOfLife.Shared;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Z3.ObjectPooling;
 
-namespace Hasbro.TheGameOfLife.TrafficJam
+namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class TrafficJamController : MonoBehaviour
     {

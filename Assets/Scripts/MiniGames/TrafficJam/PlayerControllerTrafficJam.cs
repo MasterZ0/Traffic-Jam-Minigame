@@ -1,6 +1,6 @@
-﻿using Hasbro.TheGameOfLife.Controllers;
+﻿using Marmalade.TheGameOfLife.Controllers;
 
-namespace Hasbro.TheGameOfLife.TrafficJam
+namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class PlayerControllerTrafficJam : PlayerCarController<TrafficJamCarPawn>
     {

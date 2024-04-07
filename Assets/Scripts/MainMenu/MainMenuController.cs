@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 using UnityEngine.Events;
-using Hasbro.TheGameOfLife.Gameplay;
+using Marmalade.TheGameOfLife.Gameplay;
 
-namespace Hasbro.TheGameOfLife.MainMenu
+namespace Marmalade.TheGameOfLife.MainMenu
 {
     public class MainMenuController : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.TrafficJam
+namespace Marmalade.TheGameOfLife.TrafficJam
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(TrafficJamConfig), fileName = "New" + nameof(TrafficJamConfig))]
     public class TrafficJamConfig : ScriptableObject, IService

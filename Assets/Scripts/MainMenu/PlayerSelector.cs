@@ -1,11 +1,11 @@
 using UnityEngine;
 using TMPro;
-using Hasbro.UIElements;
+using Marmalade.UIElements;
 using System;
 using UnityEngine.UI;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.MainMenu
+namespace Marmalade.TheGameOfLife.MainMenu
 {
     public class PlayerSelector : MonoBehaviour
     {

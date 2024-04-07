@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.ApplicationManager
+namespace Marmalade.TheGameOfLife.ApplicationManager
 {
     /// <summary> Initialize application </summary>
     public class AppManager : MonoBehaviour

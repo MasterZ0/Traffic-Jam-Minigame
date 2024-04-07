@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Car
+namespace Marmalade.TheGameOfLife.Car
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(CarTargetFollowerConfig), fileName = "New" + nameof(CarTargetFollowerConfig))]
     public class CarTargetFollowerConfig : ScriptableObject, IService

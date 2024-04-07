@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Shared
+namespace Marmalade.TheGameOfLife.Shared
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(GeneralConfig), fileName = "New" + nameof(GeneralConfig))]
     public class GeneralConfig: ScriptableObject, IService

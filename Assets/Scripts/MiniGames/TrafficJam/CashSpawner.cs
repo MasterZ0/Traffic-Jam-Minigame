@@ -1,4 +1,4 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,7 @@ using Z3.ObjectPooling;
 using System;
 using Random = UnityEngine.Random;
 
-namespace Hasbro.TheGameOfLife.TrafficJam
+namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class CashSpawner : MonoBehaviour
     {

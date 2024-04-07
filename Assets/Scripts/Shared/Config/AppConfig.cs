@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Shared
+namespace Marmalade.TheGameOfLife.Shared
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(AppConfig), fileName = "New" + nameof(AppConfig))]
     public class AppConfig : ScriptableObject, IService

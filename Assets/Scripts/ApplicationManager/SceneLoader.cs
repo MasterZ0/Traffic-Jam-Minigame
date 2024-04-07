@@ -3,9 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.ApplicationManager
+namespace Marmalade.TheGameOfLife.ApplicationManager
 {
     public enum AppScene
     {

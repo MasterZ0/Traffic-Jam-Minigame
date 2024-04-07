@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-namespace Hasbro.UiElements
+namespace Marmalade.UiElements
 {
     /// <summary>
     /// Renders an image outside of a mask boundary.

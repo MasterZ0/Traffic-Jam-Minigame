@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 
-namespace Hasbro.TheGameOfLife.Shared
+namespace Marmalade.TheGameOfLife.Shared
 {
     public static class ReflectionUtils
     {

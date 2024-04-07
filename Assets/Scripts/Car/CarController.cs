@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Car
+namespace Marmalade.TheGameOfLife.Car
 {
     public abstract class CarController : MonoBehaviour
     {

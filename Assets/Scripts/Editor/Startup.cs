@@ -1,9 +1,9 @@
 using UnityEditor.SceneManagement;
 using UnityEditor;
 using UnityEngine.SceneManagement;
-using Hasbro.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.Editor
+namespace Marmalade.TheGameOfLife.Editor
 {
     /// <summary>
     /// Initialize the AppConfig and load the ApplicationManager scene

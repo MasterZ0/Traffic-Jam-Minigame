@@ -1,6 +1,6 @@
 {
-    "name": "Hasbro.TheGameOfLife.Editor",
-    "rootNamespace": "Hasbro.TheGameOfLife.Editor",
+    "name": "Marmalade.TheGameOfLife.Editor",
+    "rootNamespace": "Marmalade.TheGameOfLife.Editor",
     "references": [
         "GUID:f5f549b59834f4541899401b58d40ee2",
         "GUID:b5b1c6cd668cdd84da811de4753707b2",

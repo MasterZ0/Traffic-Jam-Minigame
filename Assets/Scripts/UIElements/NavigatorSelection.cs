@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hasbro.UIElements
+namespace Marmalade.UIElements
 {
     public class NavigatorSelection : Navigator
     {

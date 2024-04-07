@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Car
+namespace Marmalade.TheGameOfLife.Car
 {
     /// <summary>
     /// Abstract class that controls a <see cref="CarPawn"/> to follow a target position by <see cref="Vector3"/>.

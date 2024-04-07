@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Shared;
+﻿using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Gameplay
+namespace Marmalade.TheGameOfLife.Gameplay
 {
     public class MainCamera : MonoBehaviour, IService
     {

@@ -1,6 +1,6 @@
 {
-    "name": "Hasbro.TheGameOfLife.Shared",
-    "rootNamespace": "Hasbro.TheGameOfLife.Shared",
+    "name": "Marmalade.TheGameOfLife.Shared",
+    "rootNamespace": "Marmalade.TheGameOfLife.Shared",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

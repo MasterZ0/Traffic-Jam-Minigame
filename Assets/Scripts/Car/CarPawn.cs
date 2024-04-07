@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Car
+namespace Marmalade.TheGameOfLife.Car
 {
     /// <summary>
     /// Basic implementation of a Car Behaviour

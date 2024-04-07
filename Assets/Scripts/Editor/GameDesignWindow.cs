@@ -1,12 +1,12 @@
-using Hasbro.TheGameOfLife.Car;
-using Hasbro.TheGameOfLife.Shared;
-using Hasbro.TheGameOfLife.TrafficJam;
+using Marmalade.TheGameOfLife.Car;
+using Marmalade.TheGameOfLife.Shared;
+using Marmalade.TheGameOfLife.TrafficJam;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.Editor
+namespace Marmalade.TheGameOfLife.Editor
 {
     public partial class GameDesignEditorWindow : OdinMenuEditorWindow
     {

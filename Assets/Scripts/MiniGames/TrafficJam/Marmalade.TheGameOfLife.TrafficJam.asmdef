@@ -1,8 +1,10 @@
 {
-    "name": "Hasbro.TheGameOfLife.ApplicationManager",
-    "rootNamespace": "Hasbro.TheGameOfLife.ApplicationManager",
+    "name": "Marmalade.TheGameOfLife.TrafficJam",
+    "rootNamespace": "Marmalade.TheGameOfLife.TrafficJam",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:b5b1c6cd668cdd84da811de4753707b2",
+        "GUID:4365bf90deedd1d49a893629c07b4546",
         "GUID:f5f549b59834f4541899401b58d40ee2"
     ],
     "includePlatforms": [],

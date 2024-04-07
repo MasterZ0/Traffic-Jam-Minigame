@@ -1,7 +1,7 @@
-﻿using Hasbro.TheGameOfLife.Car;
+﻿using Marmalade.TheGameOfLife.Car;
 using UnityEngine;
 
-namespace Hasbro.TheGameOfLife.TrafficJam
+namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class AiControllerTrafficJam : CarTargetFollower<TrafficJamCarPawn>
     {
