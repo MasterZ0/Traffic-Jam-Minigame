@@ -2,6 +2,8 @@
     "name": "Hasbro.TheGameOfLife.Car",
     "rootNamespace": "Hasbro.TheGameOfLife.Car",
     "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:4365bf90deedd1d49a893629c07b4546",
         "GUID:f5f549b59834f4541899401b58d40ee2"
     ],
     "includePlatforms": [],

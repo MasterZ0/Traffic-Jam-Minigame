@@ -8,7 +8,7 @@ namespace Hasbro.TheGameOfLife.Car
     public class CarPawn : MonoBehaviour
     {
         [SerializeField] private Rigidbody carRigidbody;
-        [SerializeField] private CarData data;
+        [SerializeField] private CarConfig data;
 
         public float Speed { get; private set; }
         public float TurnSpeed { get; private set; }
@@ -18,12 +18,6 @@ namespace Hasbro.TheGameOfLife.Car
         public void Possess(CarController controller)
         {
             this.controller = controller;
-        }
-
-        public void SetPosition(Vector3 position, Quaternion rotation)
-        {
-            transform.position = position;
-            transform.rotation = rotation;
         }
 
         public void StopCompletely()

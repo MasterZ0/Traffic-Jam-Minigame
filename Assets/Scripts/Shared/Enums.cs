@@ -1,11 +1,11 @@
 ﻿namespace Hasbro.TheGameOfLife.Shared
-{
+{   
     public enum CharacterColor
     {
         Blue,
+        Pink,
         Orange,
-        Yellow,
-        Pink
+        Yellow
     }
 
     public enum PlayerType
@@ -14,4 +14,20 @@
         Computer,
         None
     }
+
+    public enum CashValue
+    {
+        /// <summary> 1K </summary>
+        OneThousand,
+
+        /// <summary> 5K </summary>
+        FiveThousand,
+
+        /// <summary> 10K </summary>
+        TenThousand,
+
+        /// <summary> 50K </summary>
+        FiftyThousand
+    }
+
 }

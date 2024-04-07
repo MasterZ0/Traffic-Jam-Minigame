@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Hasbro.TheGameOfLife.Shared;
 using UnityEngine.Events;
+using Hasbro.TheGameOfLife.Gameplay;
 
-namespace Hasbro.TheGameOfLife.GameSelection
+namespace Hasbro.TheGameOfLife.MainMenu
 {
     public class MainMenuController : MonoBehaviour
     {
@@ -13,9 +14,11 @@ namespace Hasbro.TheGameOfLife.GameSelection
 
         private void Start()
         {
+            GeneralConfig config = ServiceLocator.GetService<GeneralConfig>();
+
             foreach (PlayerSelector p in players)
             {
-                p.Init();
+                p.Init(config);
             }
         }
 

@@ -2,7 +2,9 @@
     "name": "Hasbro.TheGameOfLife.Editor",
     "rootNamespace": "Hasbro.TheGameOfLife.Editor",
     "references": [
-        "GUID:f5f549b59834f4541899401b58d40ee2"
+        "GUID:f5f549b59834f4541899401b58d40ee2",
+        "GUID:b5b1c6cd668cdd84da811de4753707b2",
+        "GUID:9d9b4f371b8aa4d428a13da69248ac34"
     ],
     "includePlatforms": [
         "Editor"

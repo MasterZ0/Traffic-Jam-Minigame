@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Hasbro.UiElements
 {
+    /// <summary>
+    /// Renders an image outside of a mask boundary.
+    /// </summary>
     public class CutoutMaskUI : Image
     {
         public override Material materialForRendering

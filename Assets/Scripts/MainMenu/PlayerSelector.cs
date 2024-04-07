@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using Hasbro.TheGameOfLife.Shared;
 
-namespace Hasbro.TheGameOfLife.GameSelection
+namespace Hasbro.TheGameOfLife.MainMenu
 {
     public class PlayerSelector : MonoBehaviour
     {
@@ -23,16 +23,21 @@ namespace Hasbro.TheGameOfLife.GameSelection
         [SerializeField] private NavigatorSelection colorSelection;
 
         [SerializeField] private Image pawn;
+        [SerializeField] private Image joinBackground;
 
         public PlayerType PlayerType => playerType;
         public CharacterColor CharacterColor => characterColor;
 
-        internal void Init()
+        private GeneralConfig appConfig;
+
+        internal void Init(GeneralConfig appConfig)
         {
+            this.appConfig = appConfig;
+
             playerNumberText.text = $"Player {playerNumber}";
 
             int maxColors = Enum.GetValues(typeof(CharacterColor)).Length;
-            colorSelection.Init(0, maxColors);
+            colorSelection.Init((int)characterColor, maxColors);
 
             UpdateView();
         }
@@ -58,7 +63,10 @@ namespace Hasbro.TheGameOfLife.GameSelection
         private void UpdateView()
         {
             playerNameText.text = $"{playerType} {playerNumber}";
-            pawn.color = GameController.GetColor(characterColor);
+
+            Color color = appConfig.GetColor(characterColor);
+            pawn.color = color;
+            joinBackground.color = color;
 
             characterSelectionContainer.SetActive(playerType != PlayerType.None);
             joinContainer.SetActive(playerType == PlayerType.None);

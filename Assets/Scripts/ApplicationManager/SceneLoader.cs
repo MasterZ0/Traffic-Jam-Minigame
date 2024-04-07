@@ -17,7 +17,7 @@ namespace Hasbro.TheGameOfLife.ApplicationManager
     /// <summary>
     /// Load and unload scenes
     /// </summary>
-    public class SceneLoader : MonoBehaviour
+    public class SceneLoader : MonoBehaviour, IService
     {
         /// <summary> Safe variable </summary>
         private bool loadingScene;

@@ -14,11 +14,7 @@ namespace Hasbro.TheGameOfLife.Editor
         static Startup()
         {
             EditorSceneManager.sceneOpened += LoadGameManager;
-            EditorApplication.delayCall += InitAppConfig;
-        }
 
-        private static void InitAppConfig()
-        {
             AssetDatabase.LoadAssetAtPath<AppConfig>(ProjectPath.AppConfigAsset).Init();
         }
 

@@ -1,48 +1,90 @@
 using Hasbro.TheGameOfLife.Car;
-using Hasbro.TheGameOfLife.GameSelection;
+using Hasbro.TheGameOfLife.Gameplay;
 using Hasbro.TheGameOfLife.Shared;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using Z3.ObjectPooling;
 
-namespace Hasbro.TheGameOfLife.Game
+namespace Hasbro.TheGameOfLife.TrafficJam
 {
-    public struct CarPlayer
+    public class TrafficJamController : MonoBehaviour
     {
-
-    }
-
-    public class TrafficJamController : MonoBehaviour 
-    {
+        [Header("Components")]
+        [SerializeField] private CashSpawner cashSpawner;
+        [SerializeField] private HUD hud;
+        [Space]
         [SerializeField] private List<Transform> carStartingPoints;
 
-        private List<CarPawn> players;
+        [Header("Prefabs")]
+        [SerializeField] private List<TrafficJamCarPawn> cars;
+
+
+        private Dictionary<CarController, TrafficJamCarPawn> players = new();
+
+        [Inject]
+        private TrafficJamConfig data;
 
         private void Awake()
         {
-            List<Player> players = GameController.Players;
-            foreach (Player player in players)
+            this.InjectServices();
+
+            cashSpawner.Init();
+            SpawnPlayers();
+        }
+
+        private void FixedUpdate()
+        {
+            cashSpawner.UpdateComponent();
+        }
+
+        private void SpawnPlayers()
+        {
+            List<Player> gamePlayers = GameController.GetPlayers();
+
+            for (int i = 0; i < gamePlayers.Count; i++)
             {
+                Player player = gamePlayers[i];
+
+                TrafficJamCarPawn carPawn = SpawnCar(player, carStartingPoints[i]);
+                CarController<TrafficJamCarPawn> carController;
+
                 if (player.PlayerType == PlayerType.Human)
                 {
-
+                    carController = carPawn.gameObject.AddComponent<PlayerControllerTrafficJam>();
                 }
                 else if (player.PlayerType == PlayerType.Computer)
                 {
-
+                    AiControllerTrafficJam carAi = carPawn.gameObject.AddComponent<AiControllerTrafficJam>();
+                    carAi.Init(cashSpawner);
+                    carController = carAi;
                 }
+                else
+                {
+                    throw new System.NotImplementedException();
+                }
+
+                carPawn.SetPlayer(carController, player);
+                players.Add(carController, carPawn);
             }
+
+            hud.Init(players.Values.ToList());
         }
 
-        public void SetupPlayers(List<CarPawn> carPawns)
+        private TrafficJamCarPawn SpawnCar(Player player, Transform slot)
         {
-            players = new List<CarPawn>(carPawns);
+            TrafficJamCarPawn carPrefab = cars.First(c => c.CarColor == player.CharacterColor);
+            TrafficJamCarPawn newCarPawn = ObjectPool.SpawnPooledObject(carPrefab, slot.position, slot.rotation, slot);
+
+
+            return newCarPawn;
         }
 
-        public void SetupPlayers()
+        private void OnDestroy()
         {
-            for (int i = 0; i < players.Count; i++)
+            foreach ((CarController c, _) in players)
             {
-                players[i].SetPosition(carStartingPoints[i].position, carStartingPoints[i].rotation);
+                Destroy(c);
             }
         }
     }
