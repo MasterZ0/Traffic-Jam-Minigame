@@ -1,7 +1,9 @@
 {
     "name": "Marmalade.TheGameOfLife.Shared",
     "rootNamespace": "Marmalade.TheGameOfLife.Shared",
-    "references": [],
+    "references": [
+        "GUID:9c94cf3ae2c3f0f40bd86a2d1066d5f9"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -2,6 +2,7 @@
     "name": "Marmalade.TheGameOfLife.ApplicationManager",
     "rootNamespace": "Marmalade.TheGameOfLife.ApplicationManager",
     "references": [
+        "GUID:df55f17f78f75a643aff19957150ab7f",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:f5f549b59834f4541899401b58d40ee2"
     ],

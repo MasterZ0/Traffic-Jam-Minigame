@@ -1,6 +1,6 @@
 {
     "name": "Marmalade.TheGameOfLife.Gameplay",
-    "rootNamespace": "",
+    "rootNamespace": "Marmalade.TheGameOfLife.Gameplay",
     "references": [
         "GUID:f5f549b59834f4541899401b58d40ee2"
     ],

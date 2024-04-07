@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -343.99158
+      value: -344.11426
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -604,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -343.99158
+      value: -344.11426
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -971,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -343.99158
+      value: -344.11426
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1633,7 +1633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -343.99158
+      value: -344.11426
       objectReference: {fileID: 0}
     - target: {fileID: 1937981740864141698, guid: 521d589f04534f84189fd03507940412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2022,8 +2022,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Single Player
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
+  m_sharedMaterial: {fileID: -4870432711408458003, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
