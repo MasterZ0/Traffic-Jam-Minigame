@@ -1,0 +1,16 @@
+{
+    "name": "Z3.Effects",
+    "rootNamespace": "Z3.Effects",
+    "references": [
+        "GUID:df55f17f78f75a643aff19957150ab7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

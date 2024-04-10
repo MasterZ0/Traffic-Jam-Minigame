@@ -1,0 +1,18 @@
+{
+    "name": "Z3.Paths.Editor",
+    "rootNamespace": "Z3.Paths.Editor",
+    "references": [
+        "GUID:9bc3cd6601d203642b460626fd7c6157"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
