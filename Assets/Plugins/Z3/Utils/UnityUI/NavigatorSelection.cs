@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Marmalade.UIElements
+namespace Z3.UnityUI
 {
     public class NavigatorSelection : Navigator
     {

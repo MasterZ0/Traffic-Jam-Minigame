@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-namespace Marmalade.UiElements
+namespace Z3.UnityUI
 {
     /// <summary>
     /// Renders an image outside of a mask boundary.
