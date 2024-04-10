@@ -84,7 +84,7 @@ namespace Marmalade.TheGameOfLife.Car
 
             Gizmos.color = Color.red;
             Gizmos.DrawLine(target, transform.position);
-            Gizmos.DrawSphere(target, 10f);
+            Gizmos.DrawSphere(target, .5f);
         }
     }
 }

@@ -1,0 +1,18 @@
+{
+    "name": "Marmalade.TheGameOfLife.Data",
+    "rootNamespace": "Marmalade.TheGameOfLife.Data",
+    "references": [
+        "Marmalade.TheGameOfLife.TrafficJam",
+        "Marmalade.TheGameOfLife.Car",
+        "Marmalade.TheGameOfLife.Shared"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

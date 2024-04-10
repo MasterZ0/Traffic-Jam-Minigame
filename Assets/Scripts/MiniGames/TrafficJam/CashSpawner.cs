@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Z3.ObjectPooling;
+using Z3.Utils;
 using System;
 using Random = UnityEngine.Random;
 
@@ -10,22 +11,29 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class CashSpawner : MonoBehaviour
     {
-        [SerializeField] private List<Cash> cashNotes;
+        [Header("Cash Spawner")]
+        [SerializeField] private LayerMask forbiddenLayer;
         [SerializeField] private Transform cashContainer;
+        [SerializeField] private Transform spawnFX;
+        [SerializeField] private List<Cash> cashNotes;
+
         public event Action<Cash> OnSpawnCash;
 
         private readonly Dictionary<Cash, float> cashProbabilities = new();
 
         public List<Cash> SpawnedCash { get; private set; } = new();
 
-        [Inject]
         private TrafficJamConfig data;
+        private readonly Timer timer = new();
 
-        private float cashSpawnTimer;
-
-        internal void Init()
+        internal void Init(TrafficJamConfig config)
         {
+            data = config;
+
             this.InjectServices();
+
+            timer.TimeInSeconds = config.CashSpawFrequency;
+            timer.OnCompleted += SpawnCash;
 
             foreach (Cash cash in cashNotes)
             {
@@ -53,12 +61,12 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             if (SpawnedCash.Count >= data.MaxSpawnedCash)
                 return;
 
-            // Update timer
-            cashSpawnTimer += Time.fixedDeltaTime;
-            if (cashSpawnTimer < data.CashSpawFrequency)
-                return;
+            timer.FixedTick();
+        }
 
-            cashSpawnTimer -= data.CashSpawFrequency;
+        private void SpawnCash()
+        {
+            timer.Reset();
 
             float totalWeight = cashProbabilities.Values.Sum();
 
@@ -85,6 +93,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
             Vector3 position = GetRandomPosition();
             Cash newCash = ObjectPool.SpawnPooledObject(cash, position, Quaternion.identity, cashContainer);
+            ObjectPool.SpawnPooledObject(spawnFX, position, Quaternion.identity, cashContainer);
             
             SpawnedCash.Add(newCash);
             OnSpawnCash?.Invoke(newCash);
@@ -97,24 +106,44 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         private Vector3 GetRandomPosition()
         {
-            int angle = Random.Range(0, 360);
-            float area = Random.Range(0, data.SpawRadius);
-            return new Vector3()
+            const int MaxAttempts = 100;
+            Vector3 position;
+
+            for (int attempts = 0; attempts < MaxAttempts; attempts++)
             {
-                x = area * Mathf.Cos(angle * Mathf.Deg2Rad),
-                y = 0f,
-                z = area * Mathf.Sin(angle * Mathf.Deg2Rad)
-            };
+                int angle = Random.Range(0, 360);
+                float area = Random.Range(0, data.SpawRadius);
+                position = new Vector3()
+                {
+                    x = area * Mathf.Cos(angle * Mathf.Deg2Rad),
+                    y = 0f,
+                    z = area * Mathf.Sin(angle * Mathf.Deg2Rad)
+                };
+
+                // Check if there is a player close
+                if (!Physics.CheckSphere(position, data.AreaToCheckPlayer, forbiddenLayer))
+                {
+                    return position;
+                }
+            }
+
+            Debug.LogError("Maximum number of attempts reached. Unable to find a suitable position.");
+            return default;
         }
 
         private void OnDrawGizmosSelected()
         {
             if (data == null)
             {
-                this.InjectServices();
+                data = Config.GetData<TrafficJamConfig>();
+                return;
             }
 
+            Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, data.SpawRadius);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, data.AreaToCheckPlayer);
         }
     }
 }

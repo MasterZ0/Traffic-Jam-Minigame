@@ -17,7 +17,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
     /// <summary>
     /// Load and unload scenes
     /// </summary>
-    public class SceneLoader : MonoBehaviour, IService
+    public class SceneLoader : MonoBehaviour
     {
         /// <summary> Safe variable </summary>
         private bool loadingScene;

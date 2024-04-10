@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Marmalade.TheGameOfLife.Car
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(CarConfig), fileName = "New" + nameof(CarConfig))]
-    public class CarConfig : ScriptableObject, IService
+    public class CarConfig : ScriptableObject
     {
         [Header("Move")]
         [SerializeField] private float speedMax = 70f;

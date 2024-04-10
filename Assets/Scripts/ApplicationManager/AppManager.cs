@@ -11,7 +11,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
         [Header("App Manager")]
         [SerializeField] private GameObject loadingScreen;
         [SerializeField] private SceneLoader sceneLoader;
-        [SerializeField] private AppConfig appConfig;
+        [SerializeField] private ScriptableObject appConfig;
 
         public bool Loading { get; private set; } = true;
 
@@ -19,7 +19,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
 
         private void Awake()
         {
-            appConfig.Init();
+            Config.Init((IDataManager)appConfig);
             sceneLoader.Init(this);
 
             UniTask.Create(async () =>

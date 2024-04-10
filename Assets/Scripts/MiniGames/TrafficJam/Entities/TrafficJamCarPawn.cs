@@ -17,9 +17,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         Color GetPlayerColor();
     }
 
-    public class TrafficJamCarPawn : CarPawn, ICashHandler
+    public class TrafficJamCarPawn : CarPawn, ICashHandler, IEntity
     {
+        [Header("Traffic Jam Car")]
         [SerializeField] private CharacterColor carColor;
+        [SerializeField] private Transform center;
 
         public event Action OnUpdateCash;
 
@@ -27,6 +29,9 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         public int Cash {  get; private set; }
 
         private Player Player { get; set; }
+
+        public Rigidbody AttachedRigidbody => carRigidbody;
+        public Transform Center => center;
 
         internal void SetPlayer(CarController<TrafficJamCarPawn> carController, Player player)
         {
@@ -45,6 +50,9 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         public void RemoveCash(int amount)
         {
+            if (Cash == 0)
+                return;
+
             Cash -= amount;
             if (Cash < 0)
             {

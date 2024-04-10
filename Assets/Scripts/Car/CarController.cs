@@ -6,6 +6,12 @@ namespace Marmalade.TheGameOfLife.Car
     {
         public virtual float Movement { get; internal set; }
         public virtual float Direction { get; internal set; }
+        public bool Active { get; private set; } = true;
+
+        public void SetControllerActive(bool active)
+        {
+            Active = active;
+        }
     }
 
     public abstract class CarController<TCarPawn> : CarController where TCarPawn : CarPawn

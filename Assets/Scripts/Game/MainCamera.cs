@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Marmalade.TheGameOfLife.Gameplay
 {
-    public class MainCamera : MonoBehaviour, IService
+    public class MainCamera : MonoBehaviour
     {
         [SerializeField] private Camera mainCamara;
 

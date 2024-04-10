@@ -7,7 +7,8 @@ namespace Marmalade.TheGameOfLife.Car
     /// </summary>
     public class CarPawn : MonoBehaviour
     {
-        [SerializeField] private Rigidbody carRigidbody;
+        [Header("Car Pawn")]
+        [SerializeField] protected Rigidbody carRigidbody;
         [SerializeField] private CarConfig data;
 
         public float Speed { get; private set; }
@@ -28,7 +29,7 @@ namespace Marmalade.TheGameOfLife.Car
 
         private void Update()
         {
-            if (!controller)
+            if (!controller || !controller.Active)
                 return;
 
             float forwardAmount = controller.Movement;

@@ -8,13 +8,13 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [SerializeField] private GameObject pauseScreen;
         [SerializeField] private List<PlayerScore> playerScore;
 
-        public void Init(List<TrafficJamCarPawn> players)
+        public void Init(TrafficJamConfig config, List<TrafficJamCarPawn> players)
         {
             for (int i = 0; i < playerScore.Count; i++)
             {
                 if (i < players.Count)
                 {
-                    playerScore[i].Init(players[i]);
+                    playerScore[i].Init(config, players[i]);
                 }
                 else
                 {

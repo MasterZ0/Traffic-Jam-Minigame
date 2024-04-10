@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4989660938163435874, guid: 6e3a0a695243a7f47bd96dafdcb885ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6304103154868434381, guid: 6e3a0a695243a7f47bd96dafdcb885ac, type: 3}
       propertyPath: m_Name
       value: CarBlue

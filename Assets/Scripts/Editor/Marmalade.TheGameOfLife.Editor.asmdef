@@ -2,9 +2,10 @@
     "name": "Marmalade.TheGameOfLife.Editor",
     "rootNamespace": "Marmalade.TheGameOfLife.Editor",
     "references": [
-        "GUID:f5f549b59834f4541899401b58d40ee2",
+        "GUID:04f2760b2ef1f8a4d89093e89dfc39e1",
+        "GUID:9d9b4f371b8aa4d428a13da69248ac34",
         "GUID:b5b1c6cd668cdd84da811de4753707b2",
-        "GUID:9d9b4f371b8aa4d428a13da69248ac34"
+        "GUID:f5f549b59834f4541899401b58d40ee2"
     ],
     "includePlatforms": [
         "Editor"

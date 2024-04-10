@@ -1,11 +1,11 @@
 ﻿using Marmalade.TheGameOfLife.Shared;
 using System;
 using UnityEngine;
-using Z3.ObjectPooling;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
-    public class Cash : MonoBehaviour
+
+    public class Cash : DroppedItem
     {
         [SerializeField] private CashValue cashType;
 
@@ -13,10 +13,10 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         public CashValue CashValue => cashType;
 
-        private void OnTriggerEnter(Collider other)
+        protected override bool TryToCollect(IEntity entity)
         {
-            if (!other.attachedRigidbody || !other.attachedRigidbody.TryGetComponent(out ICashHandler player))
-                return;
+            if (entity is not ICashHandler player)
+                return false;
 
             int amount = cashType switch
             {
@@ -28,11 +28,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             };
 
             player.AddCash(amount);
-            
+
             OnCollected?.Invoke();
             OnCollected = null;
 
-            this.ReturnToPool();
+            return true;
         }
     }
 }

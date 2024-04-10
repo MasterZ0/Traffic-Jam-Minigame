@@ -7,24 +7,24 @@ namespace Marmalade.TheGameOfLife.Shared
 {
     public static class ServiceLocator
     {
-        private static readonly Dictionary<Type, IService> services = new();
+        private static readonly Dictionary<Type, object> services = new();
 
-        public static void AddService(IService service)
+        public static void AddService(object service)
         {
             Type type = service.GetType();
             services[type] = service;
         }
 
-        public static void RemoveService(IService service)
+        public static void RemoveService(object service)
         {
             Type type = service.GetType();
             services.Remove(type);
         }
 
-        public static T GetService<T>() where T : IService
+        public static T GetService<T>() where T : class
         {
             Type type = typeof(T);
-            if (services.TryGetValue(type, out IService service))
+            if (services.TryGetValue(type, out object service))
             {
                 return (T)service;
             }
@@ -41,7 +41,7 @@ namespace Marmalade.TheGameOfLife.Shared
 
             foreach ((FieldInfo field, _) in fields)
             {
-                if (services.TryGetValue(field.FieldType, out IService service))
+                if (services.TryGetValue(field.FieldType, out object service))
                 {
                     field.SetValue(target, service);
                 }
@@ -49,7 +49,7 @@ namespace Marmalade.TheGameOfLife.Shared
 
             foreach ((PropertyInfo property, _) in properties)
             {
-                if (services.TryGetValue(property.PropertyType, out IService service))
+                if (services.TryGetValue(property.PropertyType, out object service))
                 {
                     property.SetValue(target, service);
                 }

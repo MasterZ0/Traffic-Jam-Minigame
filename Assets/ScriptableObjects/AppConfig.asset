@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd845f46250761440a06e8893209b8ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 101408c13ad7ba141b92cfda296d6b63, type: 3}
   m_Name: AppConfig
   m_EditorClassIdentifier: 
-  otherServices:
-  - {fileID: 11400000, guid: da8601b871bb84a42b339d39f7c37f74, type: 2}
-  - {fileID: 11400000, guid: 60a8d7f627582304f97ad729b916e30c, type: 2}
-  - {fileID: 11400000, guid: a207617cf2103c1418aa7729de7e80d7, type: 2}
-  - {fileID: 11400000, guid: c586bf03d4b3d9e4f9fe7c20c82e3796, type: 2}
+  carTargetFollowerConfig: {fileID: 11400000, guid: a207617cf2103c1418aa7729de7e80d7, type: 2}
+  generalConfig: {fileID: 11400000, guid: c586bf03d4b3d9e4f9fe7c20c82e3796, type: 2}
+  trafficJamConfig: {fileID: 11400000, guid: da8601b871bb84a42b339d39f7c37f74, type: 2}
+  carConfig: {fileID: 11400000, guid: 60a8d7f627582304f97ad729b916e30c, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Marmalade.TheGameOfLife.Car
 {
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(CarTargetFollowerConfig), fileName = "New" + nameof(CarTargetFollowerConfig))]
-    public class CarTargetFollowerConfig : ScriptableObject, IService
+    public class CarTargetFollowerConfig : ScriptableObject
     {
         [SerializeField] private float stoppingDistance = 30f;
         [SerializeField] private float stoppingSpeed = 40f;
