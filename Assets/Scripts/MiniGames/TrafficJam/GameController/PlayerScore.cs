@@ -17,31 +17,31 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [SerializeField] private string positiveState = "Positive";
         [SerializeField] private string negativeState = "Negative";
 
-        private ICashHandler playerCash;
+        private TrafficJamPlayer player;
         private int currentValue;
         private bool animating;
 
         private TrafficJamConfig config;
         private int amountPerTick;
 
-        internal void Init(TrafficJamConfig config, ICashHandler playerCash)
+        internal void Init(TrafficJamConfig config, TrafficJamPlayer player)
         {
             this.config = config;
-            this.playerCash = playerCash;
+            this.player = player;
 
-            playerCash.OnUpdateCash += OnUpdateScore;
+            player.OnUpdateCash += OnUpdateScore;
 
-            background.color = playerCash.GetPlayerColor();
-            currentValue = playerCash.Cash;
-            score.text = $"${playerCash.Cash}";
+            background.color = player.Player.Color;
+            currentValue = player.Cash;
+            score.text = $"${player.Cash}";
         }
 
         private async void OnUpdateScore()
         {
-            if (currentValue == playerCash.Cash)
+            if (currentValue == player.Cash)
                 return;
 
-            if (currentValue < playerCash.Cash)
+            if (currentValue < player.Cash)
             {
                 animator.Play(positiveState);
             }
@@ -50,9 +50,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 animator.Play(negativeState);
             }
 
-            int difference = Mathf.Abs(playerCash.Cash - currentValue);
+            // Calculate amount by percentage
+            int difference = Mathf.Abs(player.Cash - currentValue);
             amountPerTick = Mathf.RoundToInt(config.ScoreAmountPerTick * 0.01f * difference);
 
+            // If is already animating, just recalculate update the animation state and amount
             if (animating)
                 return;
 
@@ -65,18 +67,18 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         private async UniTask AnimateScore()
         {
-            while (playerCash.Cash != currentValue)
+            while (player.Cash != currentValue)
             {
-                if (currentValue < playerCash.Cash)
+                if (currentValue < player.Cash)
                 {
-                    if (currentValue + amountPerTick > playerCash.Cash)
+                    if (currentValue + amountPerTick > player.Cash)
                         break;
 
                     currentValue += amountPerTick;
                 }
                 else
                 {
-                    if (currentValue - amountPerTick < playerCash.Cash)
+                    if (currentValue - amountPerTick < player.Cash)
                         break;
 
                     currentValue -= amountPerTick;
@@ -86,7 +88,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 await UniTask.WaitForSeconds(config.ScoreDelayPerTick);
             }
 
-            currentValue = playerCash.Cash;
+            currentValue = player.Cash;
             score.text = $"${currentValue}";
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Z3.Utils
 {
-    public class Timer
+    public class Timer : IDisposable
     {
         public event Action OnCompleted;
 
@@ -27,6 +27,11 @@ namespace Z3.Utils
 
             if (IsCompleted)
                 OnCompleted?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            OnCompleted = null;
         }
     }
 }

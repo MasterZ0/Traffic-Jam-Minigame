@@ -13,7 +13,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private ScriptableObject appConfig;
 
-        public bool Loading { get; private set; } = true;
+        private static bool Loading { get; set; } = true;
 
         private CancellationTokenSource initializationCts = new();
 
@@ -33,12 +33,12 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
             }).AttachExternalCancellation(initializationCts.Token);
         }
 
+        public static UniTask WaitLoadingEnd() => UniTask.WaitUntil(() => !Loading);
+
         private void OnDestroy()
         {
             initializationCts.Dispose();
         }
-
-        public async UniTask WaitLoadEnd() => await UniTask.WaitUntil(() => !Loading);
 
         public void SetActiveLoadingScreen(bool active)
         {

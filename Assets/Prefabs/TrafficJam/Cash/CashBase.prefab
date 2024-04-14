@@ -167,7 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbod: {fileID: 2227110411909748346}
   triggerCollider: {fileID: 7952075954543335611}
-  collectFX: {fileID: 400006, guid: 021a53848bf27e84cb756abf7681c902, type: 3}
+  shineFX: {fileID: 400006, guid: 021a53848bf27e84cb756abf7681c902, type: 3}
+  positiveFX: {fileID: 5494526901085474048, guid: 1eb361bab03d44748b5885817e50280e, type: 3}
   cashType: 0
 --- !u!54 &2227110411909748346
 Rigidbody:

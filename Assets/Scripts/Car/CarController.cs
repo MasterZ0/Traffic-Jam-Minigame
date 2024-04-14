@@ -4,11 +4,11 @@ namespace Marmalade.TheGameOfLife.Car
 {
     public abstract class CarController : MonoBehaviour
     {
-        public virtual float Movement { get; internal set; }
-        public virtual float Direction { get; internal set; }
-        public bool Active { get; private set; } = true;
+        public virtual float Movement { get; protected set; }
+        public virtual float Direction { get; protected set; }
+        public bool Active { get; protected set; } = true;
 
-        public void SetControllerActive(bool active)
+        public virtual void SetControllerActive(bool active)
         {
             Active = active;
         }
@@ -18,6 +18,8 @@ namespace Marmalade.TheGameOfLife.Car
     {
         [Header("Car Controller")]
         [SerializeField] protected TCarPawn carPawn;
+
+        public TCarPawn Pawn => carPawn;
 
         protected virtual void Awake()
         {

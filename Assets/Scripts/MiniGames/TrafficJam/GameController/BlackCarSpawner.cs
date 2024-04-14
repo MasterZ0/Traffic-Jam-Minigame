@@ -22,8 +22,9 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         private readonly Timer timer = new();
 
         private TrafficJamConfig config;
+        private bool gameOver;
 
-        public void Init(TrafficJamConfig config)
+        internal void Init(TrafficJamConfig config)
         {
             this.config = config;
 
@@ -31,9 +32,32 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             timer.OnCompleted += SpawnCar;
         }
 
-        public void UpdateComponent()
+        private void OnDestroy()
+        {
+            timer.Dispose();
+        }
+
+        internal void UpdateComponent()
         {
             timer.FixedTick();
+        }
+
+        internal void FinishGame()
+        {
+            gameOver = true;
+
+            foreach (BlackCar car in cars)
+            {
+                car.GameOver();
+            }
+        }
+
+        internal void Clear()
+        {
+            foreach (BlackCar car in cars)
+            {
+                car.ReturnToPool();
+            }
         }
 
         private void SpawnCar()
@@ -41,7 +65,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             timer.TimeInSeconds = config.TimeToSpawnBlackCar.RandomRange();
             timer.Reset();
 
-            _ = SpawnWithDelay();
+            SpawnWithDelay().Forget();
         }
 
         private async UniTask SpawnWithDelay()
@@ -51,18 +75,13 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
             await UniTask.WaitForSeconds(config.BlackCarSpawnDelay);
 
+            if (gameOver)
+                return;
+
             BlackCar carInstance = blackCar.SpawnPooledObject(point.position, point.rotation, carContainer);
 
             cars.Add(carInstance);
             carInstance.OnFinish += () => cars.Remove(carInstance);
-        }
-
-        public void FinishGame()
-        {
-            foreach (BlackCar car in cars)
-            {
-                car.GameOver();
-            }
         }
     }
 }

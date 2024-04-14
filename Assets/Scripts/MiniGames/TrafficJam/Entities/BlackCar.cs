@@ -10,7 +10,8 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 {
     public class BlackCar : MonoBehaviour
     {
-        [SerializeField] private Transform collisionFx;
+        [SerializeField] private Transform collisionFX;
+        [SerializeField] private TextReference negativeFX;
         [SerializeField] private List<PathPack> paths;
         [SerializeField] private BezierCurve curve;
 
@@ -64,12 +65,19 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             if (!collision.rigidbody || !collision.rigidbody.TryGetComponent(out ICashHandler player))
                 return;
 
-            if (hittedPlayers.Contains(player))
+            if (player is not IEntity entity || hittedPlayers.Contains(player))
                 return;
 
             hittedPlayers.Add(player);
-            player.RemoveCash(config.LossCashByCollision);
-            ObjectPool.SpawnPooledObject(collisionFx, collision.contacts[0].point, transform.rotation);
+            ObjectPool.SpawnPooledObject(collisionFX, collision.contacts[0].point, transform.rotation);
+
+            int removedAmount = player.RemoveCash(config.LossCashByCollision);
+
+            if (removedAmount <= 0)
+                return;
+
+            TextReference textReference = ObjectPool.SpawnPooledObject(negativeFX, entity.Center.position, Quaternion.identity);
+            textReference.Init(entity.Center, $"-${removedAmount}");
         }
 
         private void FinishRoute()

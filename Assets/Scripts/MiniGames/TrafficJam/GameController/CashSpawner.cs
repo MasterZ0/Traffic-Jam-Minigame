@@ -18,12 +18,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [SerializeField] private List<Cash> cashNotes;
 
         public event Action<Cash> OnSpawnCash;
-
-        private readonly Dictionary<Cash, float> cashProbabilities = new();
-
         public List<Cash> SpawnedCash { get; private set; } = new();
 
         private TrafficJamConfig data;
+
+        private readonly Dictionary<Cash, float> cashProbabilities = new();
         private readonly Timer timer = new();
 
         internal void Init(TrafficJamConfig config)
@@ -52,6 +51,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         private void OnDestroy()
         {
+            timer.Dispose();
             OnSpawnCash = null;
         }
 
@@ -64,10 +64,35 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             timer.FixedTick();
         }
 
+        internal void Clear()
+        {
+            foreach (Cash cash in SpawnedCash)
+            {
+                cash.ReturnToPool();
+            }
+        }
+
         private void SpawnCash()
         {
             timer.Reset();
 
+            Cash cash = GetRandomCash();
+            Vector3 position = GetRandomPosition();
+
+            Cash newCash = ObjectPool.SpawnPooledObject(cash, position, Quaternion.identity, cashContainer);
+            ObjectPool.SpawnPooledObject(spawnFX, position, Quaternion.identity, cashContainer);
+
+            SpawnedCash.Add(newCash);
+            OnSpawnCash?.Invoke(newCash);
+
+            newCash.OnCollected += () =>
+            {
+                SpawnedCash.Remove(newCash);
+            };
+        }
+
+        private Cash GetRandomCash()
+        {
             float totalWeight = cashProbabilities.Values.Sum();
 
             float randomNumber = Random.Range(0f, totalWeight);
@@ -79,29 +104,10 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 if (sum < randomNumber)
                     continue;
 
-                SpawnCash(cash);
-                return;
+                return cash;
             }
 
             throw new InvalidOperationException("Could not calculate the cash probability");
-        }
-
-        private void SpawnCash(Cash cash)
-        {
-            //SpawnSmoke smoke = spawSmoke.SpawnPooledObject(position, Quaternion.identity, transform);
-            //smoke.Init(OnSpaw, Settings.SmokeWarmingDuration, Settings.SmokeDisappearsDuration, Settings.SmokeDelayToDestroy);
-
-            Vector3 position = GetRandomPosition();
-            Cash newCash = ObjectPool.SpawnPooledObject(cash, position, Quaternion.identity, cashContainer);
-            ObjectPool.SpawnPooledObject(spawnFX, position, Quaternion.identity, cashContainer);
-            
-            SpawnedCash.Add(newCash);
-            OnSpawnCash?.Invoke(newCash);
-
-            newCash.OnCollected += () =>
-            {
-                SpawnedCash.Remove(newCash);
-            };
         }
 
         private Vector3 GetRandomPosition()

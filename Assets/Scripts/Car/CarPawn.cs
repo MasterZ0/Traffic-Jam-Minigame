@@ -23,6 +23,7 @@ namespace Marmalade.TheGameOfLife.Car
 
         public void StopCompletely()
         {
+            carRigidbody.isKinematic = true;
             Speed = 0f;
             TurnSpeed = 0f;
         }

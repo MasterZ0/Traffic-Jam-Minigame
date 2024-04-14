@@ -10,6 +10,12 @@ namespace Z3.Utils.ExtensionMethods
             transform.LookAt(worldPosition);
         }
 
+        public static void LookAtX(this Transform transform, Vector3 target)
+        {
+            Vector3 worldPosition = new Vector3(transform.position.x, target.y, target.z);
+            transform.LookAt(worldPosition);
+        }
+
         public static Vector2 GetRealSize(this RectTransform rectTransform)
         {
             float width = Mathf.Abs(rectTransform.GetRealWidth());

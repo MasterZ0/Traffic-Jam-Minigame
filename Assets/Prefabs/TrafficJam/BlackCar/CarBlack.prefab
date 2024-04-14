@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d03b7cdf412c544cb175a33147a2a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionFx: {fileID: 400004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  collisionFX: {fileID: 400004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  negativeFX: {fileID: 5227208420689043738, guid: c1b6a1cd692a5194c9367c8bafd7c041, type: 3}
   paths:
   - {fileID: 11400000, guid: 880eb082d8983f24eb87fc7e5318aea5, type: 2}
   - {fileID: 11400000, guid: 11187ad0746f7244da0cde1b8b5ff93a, type: 2}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
@@ -8,7 +9,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [SerializeField] private GameObject pauseScreen;
         [SerializeField] private List<PlayerScore> playerScore;
 
-        public void Init(TrafficJamConfig config, List<TrafficJamCarPawn> players)
+        internal void Init(TrafficJamConfig config, List<TrafficJamPlayer> players)
         {
             for (int i = 0; i < playerScore.Count; i++)
             {
@@ -22,6 +23,8 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 }
             }
         }
+
+        internal void Hide() => gameObject.SetActive(false);
 
         public void OnPause()
         {

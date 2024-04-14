@@ -1,38 +1,57 @@
 ﻿using Marmalade.TheGameOfLife.Shared;
+using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using Z3.ObjectPooling;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
-
-    public class Cash : DroppedItem
+    public class Cash : MonoBehaviour
     {
+        [Title("Drop Item")]
+        [SerializeField] private Rigidbody rigidbod;
+        [SerializeField] private Collider triggerCollider;
+        [SerializeField] private Transform shineFX;
+        [SerializeField] private TextReference positiveFX;
         [SerializeField] private CashValue cashType;
 
         public event Action OnCollected;
-
         public CashValue CashValue => cashType;
 
-        protected override bool TryToCollect(IEntity entity)
+        [Inject]
+        private GeneralConfig Config { get; set; }
+
+        private void Awake()
         {
-            if (entity is not ICashHandler player)
-                return false;
+            this.InjectServices();
+        }
 
-            int amount = cashType switch
+        protected virtual void OnEnable()
+        {
+            triggerCollider.gameObject.SetActive(true);
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.attachedRigidbody && col.attachedRigidbody.TryGetComponent(out IEntity entity))
             {
-                CashValue.OneThousand => 1000,
-                CashValue.FiveThousand => 5000,
-                CashValue.TenThousand => 10000,
-                CashValue.FiftyThousand => 50000,
-                _ => throw new NotImplementedException(),
-            };
+                if (entity is not ICashHandler player)
+                    return;
 
-            player.AddCash(amount);
+                triggerCollider.gameObject.SetActive(false);
 
-            OnCollected?.Invoke();
-            OnCollected = null;
+                int amountToAdd = cashType.GetCashValue();
+                player.AddCash(amountToAdd);
 
-            return true;
+                ObjectPool.SpawnPooledObject(shineFX, entity.Center.position, entity.Center.rotation, entity.Center);
+                TextReference textReference = ObjectPool.SpawnPooledObject(positiveFX, entity.Center.position, Quaternion.identity);
+                textReference.Init(entity.Center, $"+${amountToAdd}");
+
+                OnCollected?.Invoke();
+                OnCollected = null;
+
+                this.ReturnToPool();
+            }
         }
     }
 }

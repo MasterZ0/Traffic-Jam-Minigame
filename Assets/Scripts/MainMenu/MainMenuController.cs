@@ -28,7 +28,7 @@ namespace Marmalade.TheGameOfLife.MainMenu
 
             foreach (PlayerSelector p in players.Where(p => p.PlayerType != PlayerType.None))
             {
-                Player player = new Player(p.PlayerType, p.CharacterColor);
+                Player player = new Player(p.PlayerName, p.PlayerType, p.CharacterColor);
                 playerInGame.Add(player);
             }
 

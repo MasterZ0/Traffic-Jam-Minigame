@@ -56,7 +56,8 @@ MonoBehaviour:
   background: {fileID: 5129159251776062262}
   animator: {fileID: 4721316746829518898}
   defaultState: Default
-  playingState: Playing
+  positiveState: Positive
+  negativeState: Negative
 --- !u!95 &4721316746829518898
 Animator:
   serializedVersion: 7
@@ -296,14 +297,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: $+8000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
-  m_sharedMaterial: {fileID: -4870432711408458003, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a561898f708b2dc4ba199dd37c974be0, type: 2}
+  m_sharedMaterial: {fileID: -4870432711408458003, guid: a561898f708b2dc4ba199dd37c974be0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279964892
+    rgba: 4279737616
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

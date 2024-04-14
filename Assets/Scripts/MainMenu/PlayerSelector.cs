@@ -25,6 +25,7 @@ namespace Marmalade.TheGameOfLife.MainMenu
         [SerializeField] private Image pawn;
         [SerializeField] private Image joinBackground;
 
+        public string PlayerName => $"{playerType} {playerNumber}";
         public PlayerType PlayerType => playerType;
         public CharacterColor CharacterColor => characterColor;
 
@@ -62,7 +63,7 @@ namespace Marmalade.TheGameOfLife.MainMenu
 
         private void UpdateView()
         {
-            playerNameText.text = $"{playerType} {playerNumber}";
+            playerNameText.text = PlayerName;
 
             Color color = appConfig.GetColor(characterColor);
             pawn.color = color;
