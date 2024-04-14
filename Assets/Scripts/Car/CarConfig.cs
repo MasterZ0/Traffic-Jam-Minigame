@@ -6,29 +6,40 @@ namespace Marmalade.TheGameOfLife.Car
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(CarConfig), fileName = "New" + nameof(CarConfig))]
     public class CarConfig : ScriptableObject
     {
+        // TODO: turnAcceleration, reverseSpeed, accelerationRedution
         [Header("Move")]
-        [SerializeField] private float speedMax = 70f;
-        [SerializeField] private float speedMin = -50f;
-        [SerializeField] private float acceleration = 30f;
-        [SerializeField] private float brakeSpeed = 100f;
-        [SerializeField] private float reverseSpeed = 30f;
-        [SerializeField] private float idleSlowdown = 10f;
+        [SerializeField] private float accelerationForce = 500f;
+        [SerializeField] private Vector2 speedRange = new Vector2(1f, 5f);
+
+        [Header("Brake")]
+        [SerializeField] private float brakingForce = 300f;
+        [Tooltip("Used to avoid break unnecessarily")]
+        [SerializeField] private float brakeThreshold = .2f;
 
         [Header("Turn")]
-        [SerializeField] private float turnSpeedMax = 300f;
-        [SerializeField] private float turnSpeedAcceleration = 300f;
-        [SerializeField] private float turnIdleSlowdown = 500f;
-        [SerializeField] private float minTurnAmount = 20f;
+        [Range(0f, 50f)]
+        [SerializeField] private float maxTurnAngle = 45f;
+        [Range(1f, 4f)]
+        [SerializeField] private float turnReductionExponent = 1.25f;
 
-        public float SpeedMax => speedMax;
-        public float SpeedMin => speedMin;
-        public float Acceleration => acceleration;
-        public float BrakeSpeed => brakeSpeed;
-        public float ReverseSpeed => reverseSpeed;
-        public float IdleSlowdown => idleSlowdown;
-        public float TurnSpeedMax => turnSpeedMax;
-        public float TurnSpeedAcceleration => turnSpeedAcceleration;
-        public float TurnIdleSlowdown => turnIdleSlowdown;
-        public float MinTurnAmount => minTurnAmount;
+        [Tooltip("Below the minimum, no turn value will be equal to " + nameof(maxTurnAngle) + ". Above the maximum, the spin value will be equal to zero")]
+        [SerializeField] private Vector2 suspensionForTurnReduction = new Vector2(.5f, .95f);
+
+        [Header("VFX")]
+        [SerializeField] private float minSpeedVFX = 2f;
+
+        public float AccelerationForce => accelerationForce;
+        public float MinSpeed => speedRange.x;
+        public float MaxSpeed => speedRange.y;
+
+        public float BrakingForce => brakingForce;
+        public float BrakeThreshold => brakeThreshold;
+
+        public float MaxTurnAngle => maxTurnAngle;
+        public float TurnReductionExponent => turnReductionExponent;
+        public float MinSuspensionForTurnReduction => suspensionForTurnReduction.x;
+        public float MaxSuspensionForTurnReduction => suspensionForTurnReduction.y;
+
+        public float MinSpeedToVFX => minSpeedVFX;
     }
 }

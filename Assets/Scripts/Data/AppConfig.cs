@@ -13,10 +13,11 @@ namespace Marmalade.TheGameOfLife.Data
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(AppConfig), fileName = "New" + nameof(AppConfig))]
     public class AppConfig : ScriptableObject, IDataManager
     {
-        [SerializeField] private CarTargetFollowerConfig carTargetFollowerConfig;
         [SerializeField] private GeneralConfig generalConfig;
+        [SerializeField] private CarTargetFollowerConfig carTargetFollowerConfig;
         [SerializeField] private TrafficJamConfig trafficJamConfig;
         [SerializeField] private CarConfig carConfig;
+        [SerializeField] private AiTrafficJamConfig aiTrafficJamConfig;
 
         private readonly Dictionary<Type, ScriptableObject> dic = new();
 

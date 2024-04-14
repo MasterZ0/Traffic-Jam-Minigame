@@ -1,12 +1,16 @@
 ﻿using Marmalade.TheGameOfLife.Car;
+using Marmalade.TheGameOfLife.Shared;
 using UnityEngine;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
-    public class AiControllerTrafficJam : CarTargetFollower<TrafficJamCarPawn>
+    public class AiControllerTrafficJam : CarControllerTargetFollower
     {
         private Cash targetCash;
         private CashSpawner cashSpawner;
+
+        [Inject]
+        private AiTrafficJamConfig config; // TODO: Implement black car danger detector
 
         public void Init(CashSpawner cashSpawner)
         {

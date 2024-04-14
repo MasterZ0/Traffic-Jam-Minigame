@@ -6,14 +6,22 @@ namespace Marmalade.TheGameOfLife.Car
     [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(CarTargetFollowerConfig), fileName = "New" + nameof(CarTargetFollowerConfig))]
     public class CarTargetFollowerConfig : ScriptableObject
     {
-        [SerializeField] private float stoppingDistance = 30f;
-        [SerializeField] private float stoppingSpeed = 40f;
         [SerializeField] private float reachedTargetDistance = 15f;
         [SerializeField] private float reverseDistance = 25f;
+        [SerializeField] private float detectWallRayLength = 3f;
+        [Range(0f, 180f)]
+        [SerializeField] private float maxAngleForGradualTurn = 30f;
 
-        public float StoppingDistance => stoppingDistance;
-        public float StoppingSpeed => stoppingSpeed;
+        [SerializeField] private float stoppingDistance = 3f;
+        [SerializeField] private float stoppingSpeed = 4f;
+        [SerializeField] private float brakingThresholdTime = 2f;
+
         public float ReachedTargetDistance => reachedTargetDistance;
         public float ReverseDistance => reverseDistance;
+        public float DetectWallRayLength => detectWallRayLength;
+        public float MaxAngleForGradualTurn => maxAngleForGradualTurn;
+
+        public float BrakingThresholdTime => brakingThresholdTime;
+        public float StoppingSpeed => stoppingSpeed;
     }
 }

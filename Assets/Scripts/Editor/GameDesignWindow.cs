@@ -16,6 +16,7 @@ namespace Marmalade.TheGameOfLife.Editor
         [Inject] private TrafficJamConfig TrafficJamConfig { get; set; }
         [Inject] private CarConfig CarConfig { get; set; }
         [Inject] private CarTargetFollowerConfig CarTargetFollowerConfig { get; set; }
+        [Inject] private AiTrafficJamConfig AiTrafficJamConfig { get; set; }
 
         private readonly Color selectionColor = new Color(1f, 0.239f, 0.407f);
 
@@ -59,7 +60,7 @@ namespace Marmalade.TheGameOfLife.Editor
             tree.Add(TrafficJam, TrafficJamConfig, EditorIcons.Car);
             tree.Add($"{TrafficJam}/Car Config", CarConfig, EditorIcons.SingleUser);
             tree.Add($"{TrafficJam}/Target Follower Config", CarTargetFollowerConfig, EditorIcons.ImageCollection);
-            tree.Add($"{TrafficJam}/Computer", null, EditorIcons.PacmanGhost);
+            tree.Add($"{TrafficJam}/Computer", AiTrafficJamConfig, EditorIcons.PacmanGhost);
             
             // Sort
             tree.EnumerateTree().SortMenuItemsByName();

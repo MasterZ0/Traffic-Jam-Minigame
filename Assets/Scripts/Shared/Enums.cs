@@ -5,7 +5,7 @@
         Blue,
         Pink,
         Orange,
-        Yellow
+        LimeGreen
     }
 
     public enum PlayerType

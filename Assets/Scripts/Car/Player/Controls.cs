@@ -46,6 +46,15 @@ namespace Marmalade.TheGameOfLife.Controllers
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""6dad38b0-4a14-4f8a-a3c5-f20b2ced4cc4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,61 @@ namespace Marmalade.TheGameOfLife.Controllers
                     ""action"": ""MouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""136a913f-4663-46c6-a3eb-d11431d224f0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d6aa8626-75c5-4c2f-8466-a1eb8172cbb7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""80510edd-faf9-46d4-a568-1632f5b74c78"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6c3c6d3e-dfe7-42aa-8075-732c03215175"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f220dbfd-c737-4ed2-bbc2-5f5c1224dc62"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -596,6 +660,7 @@ namespace Marmalade.TheGameOfLife.Controllers
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_MousePosition = m_Gameplay.FindAction("MousePosition", throwIfNotFound: true);
             m_Gameplay_MouseClick = m_Gameplay.FindAction("MouseClick", throwIfNotFound: true);
+            m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -671,12 +736,14 @@ namespace Marmalade.TheGameOfLife.Controllers
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_MousePosition;
         private readonly InputAction m_Gameplay_MouseClick;
+        private readonly InputAction m_Gameplay_Move;
         public struct GameplayActions
         {
             private @Controls m_Wrapper;
             public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @MousePosition => m_Wrapper.m_Gameplay_MousePosition;
             public InputAction @MouseClick => m_Wrapper.m_Gameplay_MouseClick;
+            public InputAction @Move => m_Wrapper.m_Gameplay_Move;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -692,6 +759,9 @@ namespace Marmalade.TheGameOfLife.Controllers
                 @MouseClick.started += instance.OnMouseClick;
                 @MouseClick.performed += instance.OnMouseClick;
                 @MouseClick.canceled += instance.OnMouseClick;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -702,6 +772,9 @@ namespace Marmalade.TheGameOfLife.Controllers
                 @MouseClick.started -= instance.OnMouseClick;
                 @MouseClick.performed -= instance.OnMouseClick;
                 @MouseClick.canceled -= instance.OnMouseClick;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -841,6 +914,7 @@ namespace Marmalade.TheGameOfLife.Controllers
         {
             void OnMousePosition(InputAction.CallbackContext context);
             void OnMouseClick(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

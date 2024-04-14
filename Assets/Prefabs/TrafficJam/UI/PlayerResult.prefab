@@ -480,6 +480,7 @@ MonoBehaviour:
   scoreText: {fileID: 7486125238210816332}
   sliderFill: {fileID: 694623128045162563}
   background: {fileID: 5199801518559255458}
+  icon: {fileID: 20261036203388143}
   referencePosition: {fileID: 3647189138723271852}
 --- !u!1 &4006655707109733600
 GameObject:

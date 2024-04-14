@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
-    public class TrafficJamCarPawn : CarPawn, ICashHandler, IEntity
+    public class TrafficJamCarPawn : CarPawnTargetFollower, ICashHandler, IEntity
     {
         [Header("Traffic Jam Car")]
         [SerializeField] private CharacterColor carColor;
@@ -19,6 +19,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         internal void SetPlayer(TrafficJamPlayer player)
         {
             Player = player;
+            ActiveCar();
         }
 
         public void AddCash(int amount) => Player.AddCash(amount);

@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f294cf64b10aa9e46850dc898899bb0f, type: 3}
   m_Name: CarConfig
   m_EditorClassIdentifier: 
-  speedMax: 70
-  speedMin: -50
-  acceleration: 30
-  brakeSpeed: 100
-  reverseSpeed: 30
-  idleSlowdown: 10
-  turnSpeedMax: 300
-  turnSpeedAcceleration: 300
-  turnIdleSlowdown: 500
-  minTurnAmount: 20
+  accelerationForce: 500
+  speedRange: {x: 1, y: 5}
+  brakingForce: 300
+  brakeThreshold: 0.2
+  maxTurnAngle: 45
+  turnReductionExponent: 1.5
+  suspensionForTurnReduction: {x: 0.5, y: 0.95}
+  minSpeedVFX: 2

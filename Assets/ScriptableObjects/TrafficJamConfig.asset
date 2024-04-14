@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TrafficJamConfig
   m_EditorClassIdentifier: 
   secondsToStart: 3
-  gameDuration: 1
+  gameDuration: 30
   spawRadius: 8
-  cashSpawFrequency: 2
-  maxSpawnedCash: 6
   areaToCheckPlayer: 1
+  cashSpawFrequency: 2
+  maxSpawnedCash: 3
   oneThousendChangeWeight: 70
   fiveThousandChangeWeight: 60
   tenThousandChangeWeight: 30
@@ -25,7 +25,7 @@ MonoBehaviour:
   timeToSpawnBlackCar: {x: 2, y: 6}
   blackCarSpawnDelay: 2
   lossCashByCollision: 10000
-  scoreAmountPerTick: 5
+  scoreAmountPerTick: 10
   scoreDelayPerTick: 0.04
   scoreInitialDelay: 3
   scoreAnimationDuration: 5

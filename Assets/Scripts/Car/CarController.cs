@@ -2,24 +2,22 @@
 
 namespace Marmalade.TheGameOfLife.Car
 {
-    public abstract class CarController : MonoBehaviour
+    public abstract class CarController : MonoBehaviour, ICarController
     {
+        [Header("Car Controller")]
+        [SerializeField] protected CarPawn carPawn;
+
         public virtual float Movement { get; protected set; }
         public virtual float Direction { get; protected set; }
+        public virtual bool Brake { get; protected set; }
         public bool Active { get; protected set; } = true;
+        public CarPawn Pawn => carPawn;
 
         public virtual void SetControllerActive(bool active)
         {
             Active = active;
+            carPawn.ChangeControllerState(active);
         }
-    }
-
-    public abstract class CarController<TCarPawn> : CarController where TCarPawn : CarPawn
-    {
-        [Header("Car Controller")]
-        [SerializeField] protected TCarPawn carPawn;
-
-        public TCarPawn Pawn => carPawn;
 
         protected virtual void Awake()
         {
@@ -29,7 +27,7 @@ namespace Marmalade.TheGameOfLife.Car
             carPawn.Possess(this);
         }
 
-        public void SetPawn(TCarPawn carPawn)
+        public virtual void SetPawn(CarPawn carPawn)
         {
             transform.SetParent(carPawn.transform);
             transform.localPosition = Vector3.zero;
@@ -38,5 +36,10 @@ namespace Marmalade.TheGameOfLife.Car
             this.carPawn = carPawn;
             carPawn.Possess(this);
         }
+    }
+
+    public abstract class CarController<TCarPawn> : CarController where TCarPawn : CarPawn
+    {
+        public new TCarPawn Pawn => (TCarPawn)carPawn;
     }
 }

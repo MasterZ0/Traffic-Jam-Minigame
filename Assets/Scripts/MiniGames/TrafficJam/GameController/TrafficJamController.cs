@@ -9,6 +9,7 @@ using TMPro;
 using System;
 using Marmalade.TheGameOfLife.ApplicationManager;
 using Cysharp.Threading.Tasks;
+using Marmalade.TheGameOfLife.Controllers;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
@@ -48,8 +49,6 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [SerializeField] private List<Transform> carStartingPoints;
 
         [Header("Prefabs")]
-        [SerializeField] private AiControllerTrafficJam aiController;
-        [SerializeField] private PlayerControllerTrafficJam playerController;
         [SerializeField] private List<TrafficJamCarPawn> cars;
 
         [Header("Texts")]
@@ -105,11 +104,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 TrafficJamCarPawn carPrefab = cars.First(c => c.CarColor == player.CharacterColor);
                 TrafficJamCarPawn carPawn = ObjectPool.SpawnPooledObject(carPrefab, slot.position, slot.rotation, slot);
 
-                CarController<TrafficJamCarPawn> carController;
+                CarControllerTargetFollower carController;
 
                 if (player.PlayerType == PlayerType.Human)
                 {
-                    carController = carPawn.gameObject.AddComponent<PlayerControllerTrafficJam>();
+                    carController = carPawn.gameObject.AddComponent<PlayerCarController>();
                 }
                 else if (player.PlayerType == PlayerType.Computer)
                 {

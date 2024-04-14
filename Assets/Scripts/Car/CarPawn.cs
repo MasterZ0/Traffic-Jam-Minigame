@@ -1,135 +1,199 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Marmalade.TheGameOfLife.Car
 {
-    /// <summary>
-    /// Basic implementation of a Car Behaviour
-    /// </summary>
+    [Serializable]
+    public class CarDebug
+    {
+        public float currentAcceleration;
+        public float currentBreakForce;
+        public float currentTurnAngle;
+        public bool breaking;
+        public float speed;
+        public float absSpeed;
+    }
+
     public class CarPawn : MonoBehaviour
     {
         [Header("Car Pawn")]
+        [SerializeField] private CarConfig carConfig;
+
+        [Header("Physic Components")]
         [SerializeField] protected Rigidbody carRigidbody;
-        [SerializeField] private CarConfig data;
+        [SerializeField] private WheelCollider frontLeftWheel;
+        [SerializeField] private WheelCollider frontRightWheel;
+        [SerializeField] private WheelCollider backLeftWheel;
+        [SerializeField] private WheelCollider backRightWheel;
 
-        public float Speed { get; private set; }
-        public float TurnSpeed { get; private set; }
+        [Header("VFX Components")]
+        [SerializeField] private ParticleSystem backLeftParticles;
+        [SerializeField] private ParticleSystem backRightParticles;
+        [SerializeField] private TrailRenderer backLeftTrail;
+        [SerializeField] private TrailRenderer backRightTrail;
 
-        private CarController controller;
+        [Header("Debug")]
+        [ReadOnly, HideLabel, InlineProperty]
+        [SerializeField] private CarDebug debug;
 
-        public void Possess(CarController controller)
+        private ICarController controller;
+        private List<WheelCollider> wheels;
+        private bool breakingVFX;
+
+        public float Speed => Vector3.Dot(carRigidbody.velocity, transform.forward);
+        public float AbsSpeed => carRigidbody.velocity.magnitude;
+        
+        protected virtual void Awake()
+        {
+            wheels = new List<WheelCollider> 
+            { 
+                frontLeftWheel, 
+                frontRightWheel, 
+                backRightWheel, 
+                backLeftWheel 
+            };
+        }
+
+        public void Possess(ICarController controller)
         {
             this.controller = controller;
+        }
+
+        public virtual void ChangeControllerState(bool active) { }
+
+        public void ActiveCar()
+        {
+            carRigidbody.isKinematic = false;
         }
 
         public void StopCompletely()
         {
             carRigidbody.isKinematic = true;
-            Speed = 0f;
-            TurnSpeed = 0f;
+            UpdateVFX(false);
         }
 
-        private void Update()
+        protected virtual void FixedUpdate()
         {
-            if (!controller || !controller.Active)
+            if (controller == null || !controller.Active)
                 return;
 
-            float forwardAmount = controller.Movement;
-            float turnAmount = controller.Direction;
+            float movement = controller.Movement;
+            float direction = controller.Direction;
+            bool brake = controller.Brake;
 
-            if (forwardAmount > 0)
+            // Check breaking
+            float currentBreakForce = GetBreakForce(brake, movement);
+            bool breaking = currentBreakForce != 0;
+
+            float currentAcceleration = GetAcceleration(movement, breaking);
+            float currentTurnAngle = GetTurnAngle(direction);
+
+            // Apply values
+            frontLeftWheel.steerAngle = currentTurnAngle;
+            frontRightWheel.steerAngle = currentTurnAngle;
+
+            foreach (WheelCollider wheel in wheels)
             {
-                // Accelerating
-                Speed += forwardAmount * data.Acceleration * Time.deltaTime;
+                wheel.motorTorque = currentAcceleration;
+                wheel.brakeTorque = currentBreakForce;
             }
 
-            if (forwardAmount < 0)
+            // Update VFX
+            UpdateVFX(breaking);
+
+            // Set Debug variables
+            debug.currentBreakForce = currentBreakForce;
+            debug.currentTurnAngle = currentTurnAngle;
+            debug.breaking = breaking;
+            debug.currentAcceleration = currentAcceleration;
+            debug.speed = Speed;
+            debug.absSpeed = AbsSpeed;
+        }
+
+        private float GetBreakForce(bool brake, float movement)
+        {
+            bool breaking = brake || (Speed > carConfig.BrakeThreshold && movement < 0f) || (Speed < -carConfig.BrakeThreshold && movement > 0f);
+
+            if (movement == 0 && AbsSpeed < carConfig.MinSpeed)
             {
-                if (Speed > 0)
-                {
-                    // Braking
-                    Speed += forwardAmount * data.BrakeSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    // Reversing
-                    Speed += forwardAmount * data.ReverseSpeed * Time.deltaTime;
-                }
+                breaking = true;
             }
 
-            if (forwardAmount == 0)
-            {
-                // Not accelerating or braking
-                if (Speed > 0)
-                {
-                    Speed -= data.IdleSlowdown * Time.deltaTime;
-                }
+            return breaking ? carConfig.BrakingForce : 0f;
+        }
 
-                if (Speed < 0)
-                {
-                    Speed += data.IdleSlowdown * Time.deltaTime;
-                }
+        private float GetAcceleration(float movement, bool breaking)
+        {
+            if (breaking)
+                return 0f;
+
+            float currentAcceleration = movement * carConfig.AccelerationForce;
+
+            // TODO: Apply reduction by formula
+            if (AbsSpeed >= carConfig.MaxSpeed)
+            {
+                currentAcceleration = 0f;
             }
 
-            Speed = Mathf.Clamp(Speed, data.SpeedMin, data.SpeedMax);
+            return currentAcceleration;
+        }
 
-            carRigidbody.velocity = transform.forward * Speed;
+        private float GetTurnAngle(float direction)
+        {
+            // TODO: Apply Differential steering
+            float currentTurnAngle = direction * carConfig.MaxTurnAngle;
 
-            if (Speed < 0)
+            if (direction == 0)
+                return currentTurnAngle;
+
+            // Next formula is used to avoid overturn
+            WheelCollider wheelToCheck = direction > 0 ? frontRightWheel : frontLeftWheel;
+
+            float suspensionPercentage = GetSuspensionPercentage(wheelToCheck);
+
+            if (suspensionPercentage >= carConfig.MinSuspensionForTurnReduction)
             {
-                // Going backwards, invert wheels
-                turnAmount *= -1f;
+                float normalizedDifference = (suspensionPercentage - carConfig.MinSuspensionForTurnReduction) / (carConfig.MaxSuspensionForTurnReduction - carConfig.MinSuspensionForTurnReduction);
+                float exponentialFactor = Mathf.Pow(normalizedDifference, carConfig.TurnReductionExponent);
+                currentTurnAngle *= 1.0f - Mathf.Clamp01(exponentialFactor);
             }
 
-            if (turnAmount > 0 || turnAmount < 0)
-            {
-                // Turning
-                if (TurnSpeed > 0 && turnAmount < 0 || TurnSpeed < 0 && turnAmount > 0)
-                {
-                    // Changing turn direction
-                    TurnSpeed = turnAmount * data.MinTurnAmount;
-                }
+            return currentTurnAngle;
+        }
 
-                TurnSpeed += turnAmount * data.TurnSpeedAcceleration * Time.deltaTime;
+        private void UpdateVFX(bool breaking)
+        {
+            bool breakFxWasActive = breakingVFX;
+            breakingVFX = breaking && AbsSpeed > carConfig.MinSpeedToVFX;
+
+            if (breakingVFX == breakFxWasActive)
+                return;
+
+            backLeftTrail.emitting = breakingVFX;
+            backRightTrail.emitting = breakingVFX;
+
+            if (breakingVFX)
+            {
+                backLeftParticles.Play();
+                backRightParticles.Play();
             }
             else
             {
-                // Not turning
-                if (TurnSpeed > 0)
-                {
-                    TurnSpeed -= data.TurnIdleSlowdown * Time.deltaTime;
-                }
-
-                if (TurnSpeed < 0)
-                {
-                    TurnSpeed += data.TurnIdleSlowdown * Time.deltaTime;
-                }
-
-                if (TurnSpeed > -1f && TurnSpeed < +1f)
-                {
-                    // Stop rotating
-                    TurnSpeed = 0f;
-                }
-            }
-
-            float speedNormalized = Speed / data.SpeedMax;
-            float invertSpeedNormalized = Mathf.Clamp(1 - speedNormalized, .75f, 1f);
-
-            TurnSpeed = Mathf.Clamp(TurnSpeed, -data.TurnSpeedMax, data.TurnSpeedMax);
-
-            carRigidbody.angularVelocity = new Vector3(0, TurnSpeed * (invertSpeedNormalized * 1f) * Mathf.Deg2Rad, 0);
-
-            if (transform.eulerAngles.x > 2 || transform.eulerAngles.x < -2 || transform.eulerAngles.z > 2 || transform.eulerAngles.z < -2)
-            {
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                backLeftParticles.Stop();
+                backRightParticles.Stop();
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        /// <remarks> This formula considers that the wheel is positioned in the center of the transform </remarks>
+        /// <param name="wheel"></param>
+        /// <returns> 0 - 1 </returns>
+        public static float GetSuspensionPercentage(WheelCollider wheel)
         {
-            //if (collision.gameObject.layer == GameHandler.SOLID_OBJECTS_LAYER)
-            //{
-            Speed = Mathf.Clamp(Speed, 0f, 20f);
-            //}
+            wheel.GetWorldPose(out Vector3 position, out _);
+            float suspensionDistance = Vector3.Distance(wheel.transform.position, position) * 2f;
+            return suspensionDistance / wheel.suspensionDistance;
         }
     }
 }

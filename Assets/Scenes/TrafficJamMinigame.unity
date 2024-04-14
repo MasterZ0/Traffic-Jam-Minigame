@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerScore (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4870432711408458003, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
     - target: {fileID: 5129159251776062262, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -577,6 +585,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerScore (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4870432711408458003, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
     - target: {fileID: 5129159251776062262, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
       propertyPath: m_Color.b
       value: 0.2509804
@@ -949,7 +965,6 @@ MonoBehaviour:
   - {fileID: 1100837913}
   confettiFX: {fileID: 2026758229}
   playersReferencePosition: {fileID: 461949984}
-  cmScoreResult: {fileID: 0}
   winnerContainer: {fileID: 6986802983879392819}
   winnerBackground: {fileID: 3232425784988486116}
   winnerIcon: {fileID: 902600760}
@@ -1175,18 +1190,16 @@ MonoBehaviour:
   blackCarSpawner: {fileID: 565130709}
   hud: {fileID: 1367914616}
   scoreResult: {fileID: 363742178}
-  carStartingPoints:
-  - {fileID: 109340043}
-  - {fileID: 1667358575}
-  - {fileID: 2125603311}
-  - {fileID: 73995392}
   timer: {fileID: 1253572096}
   middleTitle: {fileID: 1402861860}
   middleTitleAnimator: {fileID: 1161139343}
   cmGameplay: {fileID: 1572494442}
   cmScoreResult: {fileID: 1413373067}
-  aiController: {fileID: 0}
-  playerController: {fileID: 0}
+  carStartingPoints:
+  - {fileID: 109340043}
+  - {fileID: 1667358575}
+  - {fileID: 2125603311}
+  - {fileID: 73995392}
   cars:
   - {fileID: 8023763135219954960, guid: c1248a27bd87d5d44855fa7cf58c8879, type: 3}
   - {fileID: 8023763135219954960, guid: ec877e31737aae5429abffc215cc5872, type: 3}
@@ -1928,6 +1941,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerScore (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
+    - target: {fileID: 3611515246300225721, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4870432711408458003, guid: c94c36f61117a654dab2821c5b34529f, type: 2}
     - target: {fileID: 5129159251776062262, guid: 5021e5d0e72279d4cbc5495013100348, type: 3}
       propertyPath: m_Color.b
       value: 0.2509804
@@ -3371,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1413373068
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ namespace Marmalade.TheGameOfLife.Gameplay
             new(1, PlayerType.Human, CharacterColor.Blue),
             new(2, PlayerType.Computer, CharacterColor.Pink),
             new(3, PlayerType.Computer, CharacterColor.Orange),
-            new(4, PlayerType.Computer, CharacterColor.Yellow),
+            new(4, PlayerType.Computer, CharacterColor.LimeGreen),
         };
 
         public static void SetPlayer(List<Player> players)

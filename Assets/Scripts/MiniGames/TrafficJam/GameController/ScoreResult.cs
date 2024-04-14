@@ -18,8 +18,6 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         [Header("Dependencies")]
         [SerializeField] private Transform playersReferencePosition;
-        [SerializeField] private Transform cmScoreResult;
-
         [SerializeField] private GameObject winnerContainer;
         [SerializeField] private Image winnerBackground;
         [SerializeField] private Image winnerIcon;

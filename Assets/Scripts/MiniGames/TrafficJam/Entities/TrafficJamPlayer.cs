@@ -14,16 +14,16 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         public event Action OnUpdateCash;
 
-        private CarController<TrafficJamCarPawn> CarController { get; }
+        private CarControllerTargetFollower CarController { get; }
 
-        internal TrafficJamPlayer(Player player, CarController<TrafficJamCarPawn> carController, TrafficJamCarPawn carPawn)
+        internal TrafficJamPlayer(Player player, CarControllerTargetFollower carController, TrafficJamCarPawn carPawn)
         {
             Player = player;
             CarController = carController;
 
-            carController.SetControllerActive(false);
-            carController.SetPawn(carPawn);
             carPawn.SetPlayer(this);
+            carController.SetPawn(carPawn);
+            carController.SetControllerActive(false);
         }
 
         internal void StartGame()
