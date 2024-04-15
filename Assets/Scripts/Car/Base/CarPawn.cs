@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Marmalade.TheGameOfLife.Shared;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,7 @@ namespace Marmalade.TheGameOfLife.Car
     }
 
     public class CarPawn : MonoBehaviour
-    {
-        [Header("Car Pawn")]
-        [SerializeField] private CarConfig carConfig;
-
+    {   
         [Header("Physic Components")]
         [SerializeField] protected Rigidbody carRigidbody;
         [SerializeField] private WheelCollider frontLeftWheel;
@@ -42,11 +40,16 @@ namespace Marmalade.TheGameOfLife.Car
         private List<WheelCollider> wheels;
         private bool breakingVFX;
 
+        [Inject]
+        private CarConfig carConfig;
+
         public float Speed => Vector3.Dot(carRigidbody.velocity, transform.forward);
         public float AbsSpeed => carRigidbody.velocity.magnitude;
         
         protected virtual void Awake()
         {
+            this.InjectServices();
+
             wheels = new List<WheelCollider> 
             { 
                 frontLeftWheel, 

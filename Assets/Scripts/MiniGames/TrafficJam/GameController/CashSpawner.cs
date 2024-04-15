@@ -118,7 +118,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             for (int attempts = 0; attempts < MaxAttempts; attempts++)
             {
                 int angle = Random.Range(0, 360);
-                float area = Random.Range(0, data.SpawRadius);
+                float area = Random.Range(0, data.ArenaRadius);
                 position = new Vector3()
                 {
                     x = area * Mathf.Cos(angle * Mathf.Deg2Rad),
@@ -146,7 +146,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             }
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, data.SpawRadius);
+            Gizmos.DrawWireSphere(transform.position, data.ArenaRadius);
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, data.AreaToCheckPlayer);

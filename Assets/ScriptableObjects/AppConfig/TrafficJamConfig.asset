@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsToStart: 3
   gameDuration: 30
-  spawRadius: 8
+  arenaRadius: 8
+  maxCarRotation: 35
+  maxInvalidCarTime: 3
   areaToCheckPlayer: 1
   cashSpawFrequency: 0.25
   maxSpawnedCash: 3

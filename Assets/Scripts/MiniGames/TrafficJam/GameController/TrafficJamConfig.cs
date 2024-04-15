@@ -10,9 +10,14 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [Header("Arena")]
         [SerializeField] private int secondsToStart = 3;
         [SerializeField] private float gameDuration = 30f;
+        [SerializeField] private float arenaRadius = 8f;
+
+        [Header("Car")]
+        [Range(0f, 45)]
+        [SerializeField] private float maxCarRotation = 35f;
+        [SerializeField] private float maxInvalidCarTime = 3f;
 
         [Header("Cash")]
-        [SerializeField] private float spawRadius = 8f;
         [SerializeField] private float areaToCheckPlayer = 1f;
         [SerializeField] private float cashSpawFrequency = .25f;
         [SerializeField] private int maxSpawnedCash = 6;
@@ -46,9 +51,12 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         // Arena
         public float GameDuration => gameDuration;
         public int SecondsToStart => secondsToStart;
+        public float ArenaRadius => arenaRadius;
+
+        public float MaxCarRotation => maxCarRotation;
+        public float MaxInvalidCarTime => maxInvalidCarTime;
 
         // Cash
-        public float SpawRadius => spawRadius;
         public float CashSpawFrequency => cashSpawFrequency;
         public int MaxSpawnedCash => maxSpawnedCash;
         public float AreaToCheckPlayer => areaToCheckPlayer;

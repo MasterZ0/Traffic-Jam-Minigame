@@ -746,7 +746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415ed773860c076469bd889ed89060fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carConfig: {fileID: 11400000, guid: 60a8d7f627582304f97ad729b916e30c, type: 2}
   carRigidbody: {fileID: 8156045053293065829}
   frontLeftWheel: {fileID: 4873237064384188608}
   frontRightWheel: {fileID: 9010891830297345090}
@@ -772,6 +771,7 @@ MonoBehaviour:
   activeParameter: Active
   carColor: 0
   center: {fileID: 4989660938163435874}
+  recoveryFX: {fileID: 400000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
 --- !u!1 &6884843903346165682
 GameObject:
   m_ObjectHideFlags: 0
