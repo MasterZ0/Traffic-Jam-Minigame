@@ -8,10 +8,10 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace Marmalade.TheGameOfLife.Data
+namespace Marmalade.TheGameOfLife.Config
 {
-    [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(AppConfig), fileName = "New" + nameof(AppConfig))]
-    public class AppConfig : ScriptableObject, IDataManager
+    [CreateAssetMenu(menuName = ProjectPath.ScriptableObjects + nameof(GlobalConfig), fileName = "New" + nameof(GlobalConfig))]
+    public class GlobalConfig : ScriptableObject, IAppConfigManager
     {
         [SerializeField] private GeneralConfig generalConfig;
         [SerializeField] private CarTargetFollowerConfig carTargetFollowerConfig;
@@ -24,16 +24,16 @@ namespace Marmalade.TheGameOfLife.Data
         [Button("Update Services")]
         public void Init()
         {
-             GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .Where(t => typeof(ScriptableObject).IsAssignableFrom(t.FieldType))
-                .ToList()
-                .ForEach(f =>
-                {
-                    ScriptableObject service = (ScriptableObject)f.GetValue(this);
+            GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+               .Where(t => typeof(ScriptableObject).IsAssignableFrom(t.FieldType))
+               .ToList()
+               .ForEach(f =>
+               {
+                   ScriptableObject service = (ScriptableObject)f.GetValue(this);
 
-                    dic[f.FieldType] = service;
-                    ServiceLocator.AddService(service);
-                });
+                   dic[f.FieldType] = service;
+                   ServiceLocator.AddService(service);
+               });
 
             ServiceLocator.AddService(this);
         }
@@ -44,5 +44,4 @@ namespace Marmalade.TheGameOfLife.Data
             return (T)dic[key];
         }
     }
-
 }

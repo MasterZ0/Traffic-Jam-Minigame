@@ -1,6 +1,6 @@
 {
-    "name": "Marmalade.TheGameOfLife.Data",
-    "rootNamespace": "Marmalade.TheGameOfLife.Data",
+    "name": "Marmalade.TheGameOfLife.Config",
+    "rootNamespace": "Marmalade.TheGameOfLife.Config",
     "references": [
         "Marmalade.TheGameOfLife.TrafficJam",
         "Marmalade.TheGameOfLife.Car",

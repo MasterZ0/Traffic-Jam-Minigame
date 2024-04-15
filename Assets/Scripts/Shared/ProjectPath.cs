@@ -8,7 +8,7 @@ namespace Marmalade.TheGameOfLife.Shared
         public const string ProjectName = "The Game Of Life/";
 
         // Paths
-        public const string AppConfigAsset = "Assets/ScriptableObjects/AppConfig.asset";
+        public const string GlobalConfigAsset = "Assets/ScriptableObjects/AppConfig/GlobalConfig.asset";
         public const string ApplicationManagerScene = "Assets/Scenes/ApplicationManager.unity";
     }
 }

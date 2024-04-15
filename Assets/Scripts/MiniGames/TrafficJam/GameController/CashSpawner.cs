@@ -141,7 +141,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         {
             if (data == null)
             {
-                data = Config.GetData<TrafficJamConfig>();
+                data = AppConfig.GetData<TrafficJamConfig>();
                 return;
             }
 

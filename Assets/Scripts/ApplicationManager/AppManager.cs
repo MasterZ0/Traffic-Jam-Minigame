@@ -19,7 +19,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
 
         private void Awake()
         {
-            Config.Init((IDataManager)appConfig);
+            AppConfig.Init((IAppConfigManager)appConfig);
             sceneLoader.Init(this);
 
             UniTask.Create(async () =>

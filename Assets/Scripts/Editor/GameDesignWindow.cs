@@ -1,5 +1,5 @@
 using Marmalade.TheGameOfLife.Car;
-using Marmalade.TheGameOfLife.Data;
+using Marmalade.TheGameOfLife.Config;
 using Marmalade.TheGameOfLife.Shared;
 using Marmalade.TheGameOfLife.TrafficJam;
 using Sirenix.OdinInspector.Editor;
@@ -11,7 +11,7 @@ namespace Marmalade.TheGameOfLife.Editor
 {
     public partial class GameDesignEditorWindow : OdinMenuEditorWindow
     {
-        [Inject] private AppConfig AppConfig { get; set; }
+        [Inject] private GlobalConfig AppConfig { get; set; }
         [Inject] private GeneralConfig GeneralConfig { get; set; }
         [Inject] private TrafficJamConfig TrafficJamConfig { get; set; }
         [Inject] private CarConfig CarConfig { get; set; }

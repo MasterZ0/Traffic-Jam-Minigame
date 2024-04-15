@@ -2,7 +2,7 @@ using UnityEditor.SceneManagement;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using Marmalade.TheGameOfLife.Shared;
-using Marmalade.TheGameOfLife.Data;
+using Marmalade.TheGameOfLife.Config;
 
 namespace Marmalade.TheGameOfLife.Editor
 {
@@ -16,8 +16,8 @@ namespace Marmalade.TheGameOfLife.Editor
         {
             EditorSceneManager.sceneOpened += LoadGameManager;
 
-            AppConfig appConfig = AssetDatabase.LoadAssetAtPath<AppConfig>(ProjectPath.AppConfigAsset);
-            Config.Init(appConfig);
+            GlobalConfig appConfig = AssetDatabase.LoadAssetAtPath<GlobalConfig>(ProjectPath.GlobalConfigAsset);
+            AppConfig.Init(appConfig);
         }
 
         private static void LoadGameManager(Scene scene, OpenSceneMode mode)

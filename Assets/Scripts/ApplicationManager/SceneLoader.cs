@@ -61,7 +61,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
 #if UNITY_EDITOR
             if (SceneManager.sceneCount > 1)
             {
-                ConfigureScene();
+                await ConfigureScene();
                 return;
             }
 #endif
@@ -69,7 +69,9 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
             await LoadCurrentScene(startScene);
         }
 
-        public async UniTask LoadScene(AppScene gameScene)
+        public void LoadScene(AppScene gameScene) => LoadSceneAsync(gameScene).Forget();
+
+        public async UniTask LoadSceneAsync(AppScene gameScene)
         {
             if (loadingScene)
             {
@@ -80,7 +82,9 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
             await LoadNextScene(gameScene);
         }
 
-        public async UniTask ReloadScene()
+        public void ReloadScene() => ReloadSceneAsync().Forget();
+
+        public async UniTask ReloadSceneAsync()
         {
             if (loadingScene)
             {
