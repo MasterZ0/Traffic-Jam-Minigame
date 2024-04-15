@@ -20,7 +20,6 @@ INCOMPLETE
 - Car controlled by NPC and avoid the traffic by stopping or redirecting
 
 TODO
-- Car recovery (overturned / crash)
 - Include SFX
 - Tutorial
 - Intro
