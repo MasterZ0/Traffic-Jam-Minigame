@@ -10,7 +10,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         private CashSpawner cashSpawner;
 
         [Inject]
-        private AiTrafficJamConfig config; // TODO: Implement black car danger detector
+        private AiTrafficJamConfig config;
 
         public void Init(CashSpawner cashSpawner)
         {
@@ -25,7 +25,10 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 return targetCash.transform.position;
             }
 
-            TryFindCash();
+            TryFindCash(); 
+            
+            // TODO: Implement black car danger detector
+            // TODO: Implement other cars detector
 
             return transform.position;
         }
