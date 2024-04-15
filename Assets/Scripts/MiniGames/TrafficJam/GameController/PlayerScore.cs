@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,8 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         private TrafficJamConfig config;
         private int amountPerTick;
 
+        private readonly CancellationTokenSource cts = new();
+
         internal void Init(TrafficJamConfig config, TrafficJamPlayer player)
         {
             this.config = config;
@@ -34,6 +37,11 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             background.color = player.Player.Color;
             currentValue = player.Cash;
             score.text = $"${player.Cash}";
+        }
+
+        private void OnDestroy()
+        {
+            cts.Cancel();
         }
 
         private async void OnUpdateScore()
@@ -61,6 +69,9 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             animating = true;
             await AnimateScore();
 
+            if (cts.IsCancellationRequested)
+                return;
+
             animator.Play(defaultState);
             animating = false;
         }
@@ -85,7 +96,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
                 }
 
                 score.text = $"${currentValue}";
-                await UniTask.WaitForSeconds(config.ScoreDelayPerTick);
+                await UniTask.WaitForSeconds(config.ScoreDelayPerTick, cancellationToken: cts.Token).SuppressCancellationThrow();
             }
 
             currentValue = player.Cash;
