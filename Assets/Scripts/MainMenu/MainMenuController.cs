@@ -35,5 +35,14 @@ namespace Marmalade.TheGameOfLife.MainMenu
             GameController.SetPlayer(playerInGame);
             onStartGame.Invoke();
         }
+        
+        public void OnQuit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
     }
 }
