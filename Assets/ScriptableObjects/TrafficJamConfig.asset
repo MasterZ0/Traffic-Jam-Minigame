@@ -16,7 +16,7 @@ MonoBehaviour:
   gameDuration: 30
   spawRadius: 8
   areaToCheckPlayer: 1
-  cashSpawFrequency: 2
+  cashSpawFrequency: 0.25
   maxSpawnedCash: 3
   oneThousendChangeWeight: 70
   fiveThousandChangeWeight: 60

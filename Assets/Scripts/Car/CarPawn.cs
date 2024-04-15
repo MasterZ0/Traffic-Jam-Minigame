@@ -56,12 +56,21 @@ namespace Marmalade.TheGameOfLife.Car
             };
         }
 
-        public void Possess(ICarController controller)
+        protected void OnDisable()
+        {
+            backLeftTrail.Clear();
+            backRightTrail.Clear();
+        }
+
+        public virtual void Possess(ICarController controller)
         {
             this.controller = controller;
         }
 
-        public virtual void ChangeControllerState(bool active) { }
+        public virtual void RemoveController() 
+        {
+            controller = null;
+        }
 
         public void ActiveCar()
         {

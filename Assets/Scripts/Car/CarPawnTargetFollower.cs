@@ -29,18 +29,18 @@ namespace Marmalade.TheGameOfLife.Car
             targetAnimator.transform.position = targetPosition;
         }
 
-        public override void ChangeControllerState(bool active)
+        public override void Possess(ICarController controller)
         {
-            base.ChangeControllerState(active);
+            base.Possess(controller);
 
-            if (active)
-            {
-                targetAnimator.transform.SetParent(null);
-            }
-            else
-            {
-                targetAnimator.transform.SetParent(transform);
-            }
+            targetAnimator.transform.SetParent(null);
+        }
+
+        public override void RemoveController()
+        {
+            base.RemoveController();
+
+            targetAnimator.transform.SetParent(transform);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace Marmalade.TheGameOfLife.Car
         public virtual void SetControllerActive(bool active)
         {
             Active = active;
-            carPawn.ChangeControllerState(active);
         }
 
         protected virtual void Awake()
@@ -25,6 +24,14 @@ namespace Marmalade.TheGameOfLife.Car
                 return;
 
             carPawn.Possess(this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (!Pawn)
+                return;
+
+            Pawn.RemoveController();
         }
 
         public virtual void SetPawn(CarPawn carPawn)

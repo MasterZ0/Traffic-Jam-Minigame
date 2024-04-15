@@ -13,23 +13,6 @@ using Marmalade.TheGameOfLife.Controllers;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
-    /*
-     - Features
-    OK - Game with 2 to 4 player
-    OK - Each player have you own color
-    OK - Player controller by mouse
-    OK - Spawn 4 type of moneys, randomly and spontaneously with max money count
-    OK - Money collect and update HUD
-    OK - Spawn Gray cars and follow a path. 
-    OK - Small countdown to start the game (3 seconds)
-    OK - 30 segunds of gameplay
-    OK - Show winner at the end
-    OK - Sprite money FX
-    DOING - car controlled by NPC, that follow a target and avoid the traffic by stopping or redirecting
-    Include SFX
-    Tutorial
-    Intro
-     */
     public class TrafficJamController : MonoBehaviour
     {
         [Header("Sub Components")]
@@ -68,12 +51,16 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         [Inject]
         private TrafficJamConfig config;
+        [Inject]
+        private SceneLoader sceneLoader;
 
         private void Awake()
         {
             AppManager.WaitLoadingEnd().ContinueWith(() =>
             {
                 this.InjectServices();
+
+                sceneLoader.OnChangeSceneStart += Quit;
 
                 cashSpawner.Init(config);
                 blackCarSpawner.Init(config);
@@ -84,8 +71,10 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             }).Forget();
         }
 
-        private void OnDestroy()
+        private void Quit() // Note: it could be a event from SceneLoader
         {
+            sceneLoader.OnChangeSceneStart -= Quit;
+
             foreach (TrafficJamPlayer player in players)
             {
                 player.Dispose();

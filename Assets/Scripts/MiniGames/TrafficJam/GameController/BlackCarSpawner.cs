@@ -1,10 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using Z3.Effects;
 using Z3.ObjectPooling;
-using Z3.Utils;
 using Z3.Utils.ExtensionMethods;
+using Timer = Z3.Utils.Timer;
 
 namespace Marmalade.TheGameOfLife.TrafficJam
 {
@@ -21,8 +22,8 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         private readonly List<BlackCar> cars = new();
         private readonly Timer timer = new();
 
+        private CancellationTokenSource cts = new();
         private TrafficJamConfig config;
-        private bool gameOver;
 
         internal void Init(TrafficJamConfig config)
         {
@@ -34,6 +35,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         private void OnDestroy()
         {
+            cts.Cancel();
             timer.Dispose();
         }
 
@@ -44,7 +46,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
 
         internal void FinishGame()
         {
-            gameOver = true;
+            cts.Cancel();
 
             foreach (BlackCar car in cars)
             {
@@ -73,10 +75,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
             Transform point = pointsToSpawn.GetRandom();
             spawnEffect.SpawnPooledObject(point.position, point.rotation);
 
-            await UniTask.WaitForSeconds(config.BlackCarSpawnDelay);
-
-            if (gameOver)
-                return;
+            await UniTask.WaitForSeconds(config.BlackCarSpawnDelay, cancellationToken: cts.Token);
 
             BlackCar carInstance = blackCar.SpawnPooledObject(point.position, point.rotation, carContainer);
 

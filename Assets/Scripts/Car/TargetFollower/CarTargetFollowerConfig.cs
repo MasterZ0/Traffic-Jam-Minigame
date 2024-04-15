@@ -12,7 +12,6 @@ namespace Marmalade.TheGameOfLife.Car
         [Range(0f, 180f)]
         [SerializeField] private float maxAngleForGradualTurn = 30f;
 
-        [SerializeField] private float stoppingDistance = 3f;
         [SerializeField] private float stoppingSpeed = 4f;
         [SerializeField] private float brakingThresholdTime = 2f;
 

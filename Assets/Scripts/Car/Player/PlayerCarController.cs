@@ -26,8 +26,9 @@ namespace Marmalade.TheGameOfLife.Controllers
             controls.Enable();
         }
 
-        protected void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             controls.Dispose();
         }
 

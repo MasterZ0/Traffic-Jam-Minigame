@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe96a6bd9150fc4e9432321ff0e7faf, type: 3}
   m_Name: CarTargetFollowerConfig
   m_EditorClassIdentifier: 
-  reachedTargetDistance: 1.5
+  reachedTargetDistance: 1
   reverseDistance: 3
   detectWallRayLength: 2
   maxAngleForGradualTurn: 30
-  stoppingDistance: 3
   stoppingSpeed: 5
   brakingThresholdTime: 0.7

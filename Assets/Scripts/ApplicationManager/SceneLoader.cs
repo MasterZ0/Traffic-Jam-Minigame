@@ -19,6 +19,8 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
     /// </summary>
     public class SceneLoader : MonoBehaviour
     {
+        public event Action OnChangeSceneStart;
+
         /// <summary> Safe variable </summary>
         private bool loadingScene;
         private AppManager appManager;
@@ -74,6 +76,7 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
                 throw new ApplicationException("There is already a scene loading process in progress");
             }
 
+            OnChangeSceneStart?.Invoke();
             await LoadNextScene(gameScene);
         }
 
@@ -83,6 +86,8 @@ namespace Marmalade.TheGameOfLife.ApplicationManager
             {
                 throw new ApplicationException("There is already a scene loading process in progress");
             }
+
+            OnChangeSceneStart?.Invoke();
 
             // Get current scene
             Scene activeScene = SceneManager.GetActiveScene();

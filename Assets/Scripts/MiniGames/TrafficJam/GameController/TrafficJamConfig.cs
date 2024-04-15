@@ -14,7 +14,7 @@ namespace Marmalade.TheGameOfLife.TrafficJam
         [Header("Cash")]
         [SerializeField] private float spawRadius = 8f;
         [SerializeField] private float areaToCheckPlayer = 1f;
-        [SerializeField] private float cashSpawFrequency = 3f;
+        [SerializeField] private float cashSpawFrequency = .25f;
         [SerializeField] private int maxSpawnedCash = 6;
         [Space]
         [Range(0f, 100f)]
